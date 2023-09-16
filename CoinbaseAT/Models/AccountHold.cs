@@ -3,7 +3,7 @@
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public class AccountHold
 {

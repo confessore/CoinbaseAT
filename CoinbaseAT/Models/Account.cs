@@ -3,7 +3,7 @@
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public class Account
 {
@@ -23,7 +23,7 @@ public class Account
     public string? Currency { get; set; }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public AccountBalance? Available_Balance { get; set; }
 
@@ -63,7 +63,7 @@ public class Account
     public bool Ready { get; set; }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public AccountHold? Hold { get; set; }
 }

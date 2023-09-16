@@ -4,39 +4,45 @@ using System.Net.WebSockets;
 using CoinbaseAT.Interfaces;
 using CoinbaseAT.Services;
 using CoinbaseAT.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CoinbaseAT;
 
 public class CoinbaseATClient : ICoinbaseATClient
 {
-    public CoinbaseATClient(
-        bool sandBox = false)
-            : this(null, new HttpClient(), sandBox)
-    {
-    }
+    public CoinbaseATClient(bool sandBox = false)
+        : this(null, new HttpClient(), sandBox) { }
 
-    public CoinbaseATClient(
-        ICoinbaseATConfiguration coinbaseATConfiguration,
-        bool sandBox = false)
-            : this(coinbaseATConfiguration, new HttpClient(), sandBox)
-    {
-    }
+    public CoinbaseATClient(ICoinbaseATConfiguration coinbaseATConfiguration, bool sandBox = false)
+        : this(coinbaseATConfiguration, new HttpClient(), sandBox) { }
 
     public CoinbaseATClient(
         ICoinbaseATConfiguration coinbaseATConfiguration,
         IHttpClient httpClient,
-        bool sandBox = false)
+        bool sandBox = false
+    )
     {
         var clock = new Clock();
-        var httpRequestMessageService = new HttpRequestMessageService(authenticator, clock, sandBox);
+        var httpRequestMessageService = new HttpRequestMessageService(
+            authenticator,
+            clock,
+            sandBox
+        );
         var createWebSocketFeed = (Func<IWebSocketFeed>)(() => new WebSocketFeed(sandBox));
         var queryBuilder = new QueryBuilder();
 
         AccountsService = new AccountsService(httpClient, httpRequestMessageService);
-        CoinbaseAccountsService = new CoinbaseAccountsService(httpClient, httpRequestMessageService);
+        CoinbaseAccountsService = new CoinbaseAccountsService(
+            httpClient,
+            httpRequestMessageService
+        );
         OrdersService = new OrdersService(httpClient, httpRequestMessageService, queryBuilder);
         PaymentsService = new PaymentsService(httpClient, httpRequestMessageService);
-        WithdrawalsService = new WithdrawalsService(httpClient, httpRequestMessageService, queryBuilder);
+        WithdrawalsService = new WithdrawalsService(
+            httpClient,
+            httpRequestMessageService,
+            queryBuilder
+        );
         DepositsService = new DepositsService(httpClient, httpRequestMessageService, queryBuilder);
         ProductsService = new ProductsService(httpClient, httpRequestMessageService, queryBuilder);
         CurrenciesService = new CurrenciesService(httpClient, httpRequestMessageService);
@@ -45,13 +51,20 @@ public class CoinbaseATClient : ICoinbaseATClient
         FundingsService = new FundingsService(httpClient, httpRequestMessageService, queryBuilder);
         ReportsService = new ReportsService(httpClient, httpRequestMessageService);
         UserAccountService = new UserAccountService(httpClient, httpRequestMessageService);
-        StablecoinConversionsService = new StablecoinConversionsService(httpClient, httpRequestMessageService);
+        StablecoinConversionsService = new StablecoinConversionsService(
+            httpClient,
+            httpRequestMessageService
+        );
         FeesService = new FeesService(httpClient, httpRequestMessageService);
         ProfilesService = new ProfilesService(httpClient, httpRequestMessageService);
         WebSocket = new WebSocket.WebSocket(createWebSocketFeed, authenticator, clock);
 
+        ServiceProvider = ConfigureServices(coinbaseATConfiguration);
+
         Log.Information("CoinbaseProClient constructed");
     }
+
+    public ServiceProvider ServiceProvider { get; set; }
 
     public IAccountsService AccountsService { get; }
 
@@ -86,4 +99,21 @@ public class CoinbaseATClient : ICoinbaseATClient
     public IProfilesService ProfilesService { get; }
 
     public IWebSocket WebSocket { get; }
+
+    private static ServiceProvider ConfigureServices(
+        ICoinbaseATConfiguration coinbaseATConfiguration
+    )
+    {
+        var serviceCollection = new ServiceCollection();
+        serviceCollection.AddHttpClient<IHttpClientService, HttpClientService>(
+            nameof(IHttpClientService),
+            options =>
+            {
+                options.BaseAddress = new Uri("https://api.coinbase.com/api");
+            }
+        );
+        serviceCollection.AddSingleton<IAccountsService, AccountsService>();
+
+        return serviceCollection.BuildServiceProvider();
+    }
 }

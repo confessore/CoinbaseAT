@@ -9,16 +9,17 @@ namespace CoinbaseAT;
 
 public class CoinbaseATConfiguration : ICoinbaseATConfiguration
 {
-    public CoinbaseATConfiguration(
-            string apiKey,
-            string unsignedSignature,
-            string passphrase)
+    public CoinbaseATConfiguration(string apiKey, string unsignedSignature, string passphrase)
     {
-        if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(unsignedSignature) ||
-            string.IsNullOrEmpty(passphrase))
+        if (
+            string.IsNullOrEmpty(apiKey)
+            || string.IsNullOrEmpty(unsignedSignature)
+            || string.IsNullOrEmpty(passphrase)
+        )
         {
             throw new ArgumentException(
-                $"{nameof(CoinbaseATConfiguration)} requires parameters {nameof(apiKey)}, {nameof(unsignedSignature)} and {nameof(passphrase)} to be populated.");
+                $"{nameof(CoinbaseATConfiguration)} requires parameters {nameof(apiKey)}, {nameof(unsignedSignature)} and {nameof(passphrase)} to be populated."
+            );
         }
 
         ApiKey = apiKey;
@@ -37,10 +38,15 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
         string secret,
         double timestamp,
         string requestUri,
-        string contentBody = "")
+        string contentBody = ""
+    )
     {
         var convertedString = Convert.FromBase64String(secret);
-        var prehash = timestamp.ToString("F0", CultureInfo.InvariantCulture) + httpMethod.ToString().ToUpper() + requestUri + contentBody;
+        var prehash =
+            timestamp.ToString("F0", CultureInfo.InvariantCulture)
+            + httpMethod.ToString().ToUpper()
+            + requestUri
+            + contentBody;
         return HashString(prehash, convertedString);
     }
 
