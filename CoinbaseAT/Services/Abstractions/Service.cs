@@ -67,9 +67,9 @@ public abstract class Service
 
         if (typeof(T) == typeof(string))
         {
-            return (T)(object)contentBody;
+            return (T)(object)result;
         }
 
-        return JsonSerializer.Deserialize<T>(contentBody);
+        return JsonSerializer.Deserialize<T>(result);
     }
 }
