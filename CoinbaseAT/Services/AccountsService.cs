@@ -10,7 +10,7 @@ namespace CoinbaseAT.Services;
 /// <summary>
 /// <inheritdoc cref="IAccountsService"/>
 /// </summary>
-public class AccountsService : Service, IAccountsService
+public class AccountsService : CoinbaseATService, IAccountsService
 {
     public AccountsService(IHttpClientService httpClientService)
         : base(httpClientService) { }

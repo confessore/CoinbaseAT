@@ -6,11 +6,11 @@ using CoinbaseAT.Services.Interfaces;
 
 namespace CoinbaseAT.Services.Abstractions;
 
-public abstract class Service
+public abstract class CoinbaseATService
 {
     private protected readonly IHttpClientService _httpClientService;
 
-    protected Service(IHttpClientService httpClientService)
+    protected CoinbaseATService(IHttpClientService httpClientService)
     {
         _httpClientService = httpClientService;
     }
