@@ -5,6 +5,9 @@ using CoinbaseAT.Services.Interfaces;
 
 namespace CoinbaseAT.Services;
 
+/// <summary>
+/// <inheritdoc cref="IAccountsService"/>
+/// </summary>
 public class AccountsService : Service, IAccountsService
 {
     public AccountsService(IHttpClientService httpClientService)

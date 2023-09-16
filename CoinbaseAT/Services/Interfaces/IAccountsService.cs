@@ -1,22 +1,26 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
+using CoinbaseAT.Models;
+
 namespace CoinbaseAT.Services.Interfaces;
 
+/// <summary>
+/// 
+/// </summary>
 public interface IAccountsService
 {
-    Task<IEnumerable<Account>> GetAllAccountsAsync();
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="limit"></param>
+    /// <param name="cursor"></param>
+    /// <returns></returns>
+    Task<IEnumerable<Account>> ListAccountsAsync(int? limit = null, string? cursor = null);
 
-    Task<Account> GetAccountByIdAsync(string id);
-
-    Task<IList<IList<AccountHistory>>> GetAccountHistoryAsync(
-        string id,
-        int limit = 100,
-        int numberOfPages = 0
-    );
-
-    Task<IList<IList<AccountHold>>> GetAccountHoldsAsync(
-        string id,
-        int limit = 100,
-        int numberOfPages = 0
-    );
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="uuid"></param>
+    /// <returns></returns>
+    Task<Account> GetAccountAsync(string uuid);
 }
