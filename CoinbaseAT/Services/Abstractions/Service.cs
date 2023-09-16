@@ -35,19 +35,19 @@ public abstract class Service
 
         var result = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-        string errorMessage;
+        string message;
 
         try
         {
-            var jsonMsg = JsonSerializer.Deserialize<object>(contentBody);
-            errorMessage = jsonMsg.Message;
+            var obj = JsonSerializer.Deserialize<dynamic>(result);
+            message = obj["Message"];
         }
         catch
         {
-            errorMessage = contentBody;
+            message = contentBody;
         }
 
-        var coinbaseATHttpRequestException = new CoinbaseATHttpRequestException(errorMessage, null, httpResponseMessage.StatusCode)
+        var coinbaseATHttpRequestException = new CoinbaseATHttpRequestException(message, null, httpResponseMessage.StatusCode)
         {
             RequestMessage = httpRequestMessage,
             ResponseMessage = httpResponseMessage,
@@ -63,13 +63,13 @@ public abstract class Service
             string contentBody = "")
     {
         var httpResponseMessage = await SendHttpRequestMessageAsync(httpMethod, requestPath, contentBody);
-        var result = await httpClient.ReadAsStringAsync(httpResponseMessage).ConfigureAwait(false);
+        var result = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         if (typeof(T) == typeof(string))
         {
             return (T)(object)contentBody;
         }
 
-        return JsonConfig.DeserializeObject<T>(contentBody);
+        return JsonSerializer.Deserialize<T>(contentBody);
     }
 }
