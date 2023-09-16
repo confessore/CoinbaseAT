@@ -31,7 +31,7 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
         string apiSecret,
         double timestamp,
         string requestPath,
-        string body = ""
+        string contentBody = ""
     )
     {
         var convertedString = Convert.FromBase64String(apiSecret);
@@ -39,7 +39,7 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
             timestamp.ToString("F0", CultureInfo.InvariantCulture)
             + httpMethod.Method
             + requestPath
-            + body;
+            + contentBody;
         return HashString(prehash, convertedString);
     }
 

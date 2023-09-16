@@ -5,4 +5,12 @@ namespace CoinbaseAT.Services.Interfaces;
 /// <summary>
 ///
 /// </summary>
-public interface IHttpClientService { }
+public interface IHttpClientService
+{
+    HttpClient HttpClient { get; set; }
+    HttpRequestMessage CreateHttpRequestMessage(
+        HttpMethod httpMethod,
+        string requestPath,
+        string contentBody = ""
+    );
+}
