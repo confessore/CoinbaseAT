@@ -16,14 +16,14 @@ public class CoinbaseATClient : ICoinbaseATClient
     }
 
     public CoinbaseATClient(
-        IAuthenticator authenticator,
+        ICoinbaseATConfiguration coinbaseATConfiguration,
         bool sandBox = false)
-            : this(authenticator, new HttpClient(), sandBox)
+            : this(coinbaseATConfiguration, new HttpClient(), sandBox)
     {
     }
 
     public CoinbaseATClient(
-        IAuthenticator authenticator,
+        ICoinbaseATConfiguration coinbaseATConfiguration,
         IHttpClient httpClient,
         bool sandBox = false)
     {
