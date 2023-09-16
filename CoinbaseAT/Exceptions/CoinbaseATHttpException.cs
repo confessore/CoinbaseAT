@@ -10,21 +10,18 @@ public class CoinbaseATHttpRequestException : HttpRequestException
 
     public HttpResponseMessage? ResponseMessage { get; set; }
 
-    public CoinbaseATHttpRequestException()
-    {
-    }
+    public CoinbaseATHttpRequestException() { }
 
     public CoinbaseATHttpRequestException(string message)
-        : base(message)
-    {
-    }
+        : base(message) { }
 
     public CoinbaseATHttpRequestException(string message, Exception inner)
-        : base(message, inner)
-    {
-    }
-    public CoinbaseATHttpRequestException(string message, Exception inner, HttpStatusCode httpStatusCode)
-        : base(message, inner, httpStatusCode)
-    {
-    }
+        : base(message, inner) { }
+
+    public CoinbaseATHttpRequestException(
+        string message,
+        Exception inner,
+        HttpStatusCode httpStatusCode
+    )
+        : base(message, inner, httpStatusCode) { }
 }

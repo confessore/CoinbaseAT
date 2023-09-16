@@ -1,7 +1,5 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
-using System.Net;
-using System.Net.Http;
 using System.Text.Json;
 using CoinbaseAT.Exceptions;
 using CoinbaseAT.Services.Interfaces;
@@ -20,13 +18,17 @@ public abstract class Service
     private async Task<HttpResponseMessage> SendHttpRequestMessageAsync(
         HttpMethod httpMethod,
         string requestPath,
-        string contentBody = "")
+        string contentBody = ""
+    )
     {
-        var httpRequestMessage = contentBody == string.Empty
-            ? _httpClientService.CreateHttpRequestMessage(httpMethod, requestPath)
-            : _httpClientService.CreateHttpRequestMessage(httpMethod, requestPath, contentBody);
+        var httpRequestMessage =
+            contentBody == string.Empty
+                ? _httpClientService.CreateHttpRequestMessage(httpMethod, requestPath)
+                : _httpClientService.CreateHttpRequestMessage(httpMethod, requestPath, contentBody);
 
-        var httpResponseMessage = await _httpClientService.HttpClient.SendAsync(httpRequestMessage).ConfigureAwait(false);
+        var httpResponseMessage = await _httpClientService.HttpClient
+            .SendAsync(httpRequestMessage)
+            .ConfigureAwait(false);
 
         if (httpResponseMessage.IsSuccessStatusCode)
         {
@@ -47,7 +49,11 @@ public abstract class Service
             message = contentBody;
         }
 
-        var coinbaseATHttpRequestException = new CoinbaseATHttpRequestException(message, null, httpResponseMessage.StatusCode)
+        var coinbaseATHttpRequestException = new CoinbaseATHttpRequestException(
+            message,
+            null,
+            httpResponseMessage.StatusCode
+        )
         {
             RequestMessage = httpRequestMessage,
             ResponseMessage = httpResponseMessage,
@@ -58,11 +64,16 @@ public abstract class Service
     }
 
     protected async Task<T> SendServiceCall<T>(
-            HttpMethod httpMethod,
-            string requestPath,
-            string contentBody = "")
+        HttpMethod httpMethod,
+        string requestPath,
+        string contentBody = ""
+    )
     {
-        var httpResponseMessage = await SendHttpRequestMessageAsync(httpMethod, requestPath, contentBody);
+        var httpResponseMessage = await SendHttpRequestMessageAsync(
+            httpMethod,
+            requestPath,
+            contentBody
+        );
         var result = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         if (typeof(T) == typeof(string))
