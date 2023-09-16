@@ -4,6 +4,9 @@ using CoinbaseAT.Services.Interfaces;
 
 namespace CoinbaseAT.Services;
 
+/// <summary>
+/// <inheritdoc cref="IHttpClientService"/>
+/// </summary>
 public class HttpClientService : IHttpClientService
 {
     private readonly IHttpClientFactory _httpClientFactory;
@@ -14,7 +17,7 @@ public class HttpClientService : IHttpClientService
         HttpClient = CreateHttpClient();
     }
 
-    public HttpClient HttpClient { get; set; }
+    private HttpClient HttpClient { get; set; }
 
     private HttpClient CreateHttpClient() =>
         _httpClientFactory.CreateClient(nameof(IHttpClientService));

@@ -2,7 +2,7 @@
 
 namespace CoinbaseAT.Services.Interfaces;
 
-public interface IHttpClientService
-{
-    HttpClient HttpClient { get; set; }
-}
+/// <summary>
+///
+/// </summary>
+public interface IHttpClientService { }

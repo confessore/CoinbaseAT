@@ -1,21 +1,19 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
-using CoinbaseAT.Models.Interfaces;
-
-namespace CoinbaseAT.Models;
+namespace CoinbaseAT.Models.Interfaces;
 
 /// <summary>
-/// <inheritdoc cref="IAccountHold"/>
+///
 /// </summary>
-public class AccountHold : IAccountHold
+public interface IAccountBalance
 {
     /// <summary>
-    /// <inheritdoc/>
+    /// Amount of currency that this object represents.
     /// </summary>
-    public string? Value { get; set; }
+    string? Value { get; set; }
 
     /// <summary>
-    /// <inheritdoc/>
+    /// Denomination of the currency.
     /// </summary>
-    public string? Currency { get; set; }
+    string? Currency { get; set; }
 }

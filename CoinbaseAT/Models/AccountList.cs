@@ -5,17 +5,27 @@ using CoinbaseAT.Models.Interfaces;
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// <inheritdoc cref="IAccountHold"/>
+/// <inheritdoc cref="IAccountList"/>
 /// </summary>
-public class AccountHold : IAccountHold
+public class AccountList : IAccountList
 {
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public string? Value { get; set; }
+    public IEnumerable<Account>? Accounts { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public string? Currency { get; set; }
+    public bool Has_Next { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string? Cursor { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public int Size { get; set; }
 }

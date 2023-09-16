@@ -5,12 +5,12 @@ using CoinbaseAT.Models;
 namespace CoinbaseAT.Services.Interfaces;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public interface IAccountsService
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="limit"></param>
     /// <param name="cursor"></param>
@@ -18,7 +18,7 @@ public interface IAccountsService
     Task<IEnumerable<Account>> ListAccountsAsync(int? limit = null, string? cursor = null);
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="uuid"></param>
     /// <returns></returns>

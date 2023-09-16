@@ -13,17 +13,17 @@ public class AccountsService : Service, IAccountsService
     public AccountsService(IHttpClientService httpClientService)
         : base(httpClientService) { }
 
-    public async Task<IEnumerable<Account>> GetAllAccountsAsync()
+    public static async Task<IEnumerable<Account>> GetAllAccountsAsync()
     {
         return await SendServiceCall<List<Account>>(HttpMethod.Get, "/accounts");
     }
 
-    public async Task<Account> GetAccountByIdAsync(string id)
+    public static async Task<Account> GetAccountByIdAsync(string id)
     {
         return await SendServiceCall<Account>(HttpMethod.Get, $"/accounts/{id}");
     }
 
-    public async Task<IList<IList<AccountHistory>>> GetAccountHistoryAsync(
+    public static async Task<IList<IList<AccountHistory>>> GetAccountHistoryAsync(
         string id,
         int limit = 100,
         int numberOfPages = 0
@@ -38,7 +38,7 @@ public class AccountsService : Service, IAccountsService
         return httpResponseMessage;
     }
 
-    public async Task<IList<IList<AccountHold>>> GetAccountHoldsAsync(
+    public static async Task<IList<IList<AccountHold>>> GetAccountHoldsAsync(
         string id,
         int limit = 100,
         int numberOfPages = 0

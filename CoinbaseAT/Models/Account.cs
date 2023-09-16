@@ -1,69 +1,71 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
+using CoinbaseAT.Models.Interfaces;
+
 namespace CoinbaseAT.Models;
 
 /// <summary>
-///
+/// <inheritdoc cref="IAccount"/>
 /// </summary>
-public class Account
+public class Account : IAccount
 {
     /// <summary>
-    /// Unique identifier for account.
+    /// <inheritdoc/>
     /// </summary>
     public string? Uuid { get; set; }
 
     /// <summary>
-    /// Name for the account.
+    /// <inheritdoc/>
     /// </summary>
     public string? ProfileId { get; set; }
 
     /// <summary>
-    /// Currency symbol for the account.
+    /// <inheritdoc/>
     /// </summary>
     public string? Currency { get; set; }
 
     /// <summary>
-    ///
+    /// <inheritdoc/>
     /// </summary>
     public AccountBalance? Available_Balance { get; set; }
 
     /// <summary>
-    /// Whether or not this account is the user's primary account.
+    /// <inheritdoc/>
     /// </summary>
     public bool Default { get; set; }
 
     /// <summary>
-    /// Whether or not this account is active and okay to use.
+    /// <inheritdoc/>
     /// </summary>
     public bool Active { get; set; }
 
     /// <summary>
-    /// Time at which this account was created.
+    /// <inheritdoc/>
     /// </summary>
     public DateTime Created_At { get; set; }
 
     /// <summary>
-    /// Time at which this account was updated.
+    /// <inheritdoc/>
     /// </summary>
     public DateTime Updated_At { get; set; }
 
     /// <summary>
-    /// Time at which this account was deleted.
+    /// <inheritdoc/>
     /// </summary>
     public DateTime Deleted_At { get; set; }
 
     /// <summary>
-    /// Possible values: [ACCOUNT_TYPE_UNSPECIFIED, ACCOUNT_TYPE_CRYPTO, ACCOUNT_TYPE_FIAT, ACCOUNT_TYPE_VAULT]
+    /// <inheritdoc/>
     /// </summary>
     public string? Type { get; set; }
 
     /// <summary>
-    /// Whether or not this account is ready to trade.
+    /// <inheritdoc/>
     /// </summary>
     public bool Ready { get; set; }
 
     /// <summary>
-    ///
+    /// <inheritdoc/>
     /// </summary>
     public AccountHold? Hold { get; set; }
 }
