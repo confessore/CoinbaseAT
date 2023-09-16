@@ -30,19 +30,19 @@ public class HttpClientService : IHttpClientService
 
     public HttpRequestMessage CreateHttpRequestMessage(
         HttpMethod httpMethod,
-        string requestUri,
-        string contentBody = ""
+        string requestPath,
+        string body = ""
     )
     {
         var requestMessage = new HttpRequestMessage(
             httpMethod,
-            new Uri(new Uri(apiUri), requestUri)
+            new Uri(HttpClient.BaseAddress, requestPath)
         )
         {
             Content =
-                contentBody == string.Empty
+                body == string.Empty
                     ? null
-                    : new StringContent(contentBody, Encoding.UTF8, "application/json")
+                    : new StringContent(body, Encoding.UTF8, "application/json")
         };
 
         var timestamp = DateTime.UtcNow.ToTimestamp();
@@ -51,8 +51,8 @@ public class HttpClientService : IHttpClientService
             httpMethod,
             _coinbaseATConfiguration.APISecret,
             timestamp,
-            requestUri,
-            contentBody
+            requestPath,
+            body
         );
 
         AddHeaders(signature, timestamp);

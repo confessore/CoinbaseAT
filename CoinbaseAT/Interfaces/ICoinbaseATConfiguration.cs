@@ -8,10 +8,10 @@ public interface ICoinbaseATConfiguration
 
     string APISecret { get; }
     string ComputeSignature(
-        HttpMethod httpMethod,
+        HttpMethod methpd,
         string secret,
         double timestamp,
-        string requestUri,
-        string contentBody = ""
+        string requestPath,
+        string body = ""
     );
 }

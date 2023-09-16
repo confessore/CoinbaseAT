@@ -101,6 +101,7 @@ public class CoinbaseATClient : ICoinbaseATClient
             {
                 options.BaseAddress = new Uri("https://api.coinbase.com/api");
                 options.DefaultRequestHeaders.Add("User-Agent", "CoinbaseATClient");
+                options.DefaultRequestHeaders.Add("Accept", "application/json");
                 options.DefaultRequestHeaders.Add("CB-ACCESS-KEY", coinbaseATConfiguration.APIKey);
             }
         );

@@ -28,18 +28,18 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
 
     public string ComputeSignature(
         HttpMethod httpMethod,
-        string secret,
+        string apiSecret,
         double timestamp,
-        string requestUri,
-        string contentBody = ""
+        string requestPath,
+        string body = ""
     )
     {
-        var convertedString = Convert.FromBase64String(secret);
+        var convertedString = Convert.FromBase64String(apiSecret);
         var prehash =
             timestamp.ToString("F0", CultureInfo.InvariantCulture)
-            + httpMethod.ToString().ToUpper()
-            + requestUri
-            + contentBody;
+            + httpMethod.Method
+            + requestPath
+            + body;
         return HashString(prehash, convertedString);
     }
 
