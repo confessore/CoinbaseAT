@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
-using System.Net.WebSockets;
 using CoinbaseAT.Interfaces;
 using CoinbaseAT.Services;
 using CoinbaseAT.Services.Interfaces;
@@ -10,19 +9,12 @@ namespace CoinbaseAT;
 
 public class CoinbaseATClient : ICoinbaseATClient
 {
-    public CoinbaseATClient(bool sandBox = false)
-        : this(null, new HttpClient(), sandBox) { }
+    public CoinbaseATClient()
+        : this(null) { }
 
-    public CoinbaseATClient(ICoinbaseATConfiguration coinbaseATConfiguration, bool sandBox = false)
-        : this(coinbaseATConfiguration, new HttpClient(), sandBox) { }
-
-    public CoinbaseATClient(
-        ICoinbaseATConfiguration coinbaseATConfiguration,
-        IHttpClient httpClient,
-        bool sandBox = false
-    )
+    public CoinbaseATClient(ICoinbaseATConfiguration coinbaseATConfiguration)
     {
-        var clock = new Clock();
+        /*var clock = new Clock();
         var httpRequestMessageService = new HttpRequestMessageService(
             authenticator,
             clock,
@@ -30,8 +22,6 @@ public class CoinbaseATClient : ICoinbaseATClient
         );
         var createWebSocketFeed = (Func<IWebSocketFeed>)(() => new WebSocketFeed(sandBox));
         var queryBuilder = new QueryBuilder();
-
-        AccountsService = new AccountsService(httpClient, httpRequestMessageService);
         CoinbaseAccountsService = new CoinbaseAccountsService(
             httpClient,
             httpRequestMessageService
@@ -57,18 +47,17 @@ public class CoinbaseATClient : ICoinbaseATClient
         );
         FeesService = new FeesService(httpClient, httpRequestMessageService);
         ProfilesService = new ProfilesService(httpClient, httpRequestMessageService);
-        WebSocket = new WebSocket.WebSocket(createWebSocketFeed, authenticator, clock);
+        WebSocket = new WebSocket.WebSocket(createWebSocketFeed, authenticator, clock);*/
 
         ServiceProvider = ConfigureServices(coinbaseATConfiguration);
-
-        Log.Information("CoinbaseProClient constructed");
+        AccountsService = ServiceProvider.GetRequiredService<IAccountsService>();
     }
 
     public ServiceProvider ServiceProvider { get; set; }
 
     public IAccountsService AccountsService { get; }
 
-    public ICoinbaseAccountsService CoinbaseAccountsService { get; }
+    /*public ICoinbaseAccountsService CoinbaseAccountsService { get; }
 
     public IOrdersService OrdersService { get; }
 
@@ -98,7 +87,7 @@ public class CoinbaseATClient : ICoinbaseATClient
 
     public IProfilesService ProfilesService { get; }
 
-    public IWebSocket WebSocket { get; }
+    public IWebSocket WebSocket { get; }*/
 
     private static ServiceProvider ConfigureServices(
         ICoinbaseATConfiguration coinbaseATConfiguration

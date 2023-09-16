@@ -8,7 +8,7 @@ public interface ICoinbaseATClient
 {
     IAccountsService AccountsService { get; }
 
-    ICoinbaseAccountsService CoinbaseAccountsService { get; }
+    /*ICoinbaseAccountsService CoinbaseAccountsService { get; }
 
     IOrdersService OrdersService { get; }
 
@@ -38,5 +38,5 @@ public interface ICoinbaseATClient
 
     IProfilesService ProfilesService { get; }
 
-    ILimitsService LimitsService { get; }
+    ILimitsService LimitsService { get; }*/
 }
