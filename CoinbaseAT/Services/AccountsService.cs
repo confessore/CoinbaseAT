@@ -21,7 +21,7 @@ public class AccountsService : CoinbaseATService, IAccountsService
     )
     {
         var stringBuilder = new StringBuilder();
-        stringBuilder.Append("/v3/brokerage/accounts");
+        stringBuilder.Append("/api/v3/brokerage/accounts");
         if (limit != null || cursor != null)
         {
             if (limit != null && cursor != null)
@@ -44,6 +44,6 @@ public class AccountsService : CoinbaseATService, IAccountsService
 
     public async Task<Account> GetAccountAsync(string uuid)
     {
-        return await SendServiceCall<Account>(HttpMethod.Get, $"/v3/brokerage/accounts/{uuid}");
+        return await SendServiceCall<Account>(HttpMethod.Get, $"/api/v3/brokerage/accounts/{uuid}");
     }
 }
