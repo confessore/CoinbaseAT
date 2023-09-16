@@ -1,5 +1,9 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
+using System.Globalization;
+using System.Text;
+using CoinbaseAT.Extensions;
+using CoinbaseAT.Interfaces;
 using CoinbaseAT.Services.Interfaces;
 
 namespace CoinbaseAT.Services;
@@ -9,16 +13,61 @@ namespace CoinbaseAT.Services;
 /// </summary>
 public class HttpClientService : IHttpClientService
 {
+    private readonly ICoinbaseATConfiguration _coinbaseATConfiguration;
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public HttpClientService(IHttpClientFactory httpClientFactory)
+    public HttpClientService(
+        ICoinbaseATConfiguration coinbaseATConfiguration,
+        IHttpClientFactory httpClientFactory
+    )
     {
+        _coinbaseATConfiguration = coinbaseATConfiguration;
         _httpClientFactory = httpClientFactory;
         HttpClient = CreateHttpClient();
     }
 
     private HttpClient HttpClient { get; set; }
 
+    public HttpRequestMessage CreateHttpRequestMessage(
+        HttpMethod httpMethod,
+        string requestUri,
+        string contentBody = ""
+    )
+    {
+        var requestMessage = new HttpRequestMessage(
+            httpMethod,
+            new Uri(new Uri(apiUri), requestUri)
+        )
+        {
+            Content =
+                contentBody == string.Empty
+                    ? null
+                    : new StringContent(contentBody, Encoding.UTF8, "application/json")
+        };
+
+        var timestamp = DateTime.UtcNow.ToTimestamp();
+
+        var signature = _coinbaseATConfiguration.ComputeSignature(
+            httpMethod,
+            _coinbaseATConfiguration.APISecret,
+            timestamp,
+            requestUri,
+            contentBody
+        );
+
+        AddHeaders(signature, timestamp);
+        return requestMessage;
+    }
+
     private HttpClient CreateHttpClient() =>
         _httpClientFactory.CreateClient(nameof(IHttpClientService));
+
+    private void AddHeaders(string signature, double timestamp)
+    {
+        HttpClient.DefaultRequestHeaders.Add("CB-ACCESS-SIGN", signature);
+        HttpClient.DefaultRequestHeaders.Add(
+            "CB-ACCESS-TIMESTAMP",
+            timestamp.ToString("F0", CultureInfo.InvariantCulture)
+        );
+    }
 }

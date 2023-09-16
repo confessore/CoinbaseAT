@@ -94,13 +94,17 @@ public class CoinbaseATClient : ICoinbaseATClient
     )
     {
         var serviceCollection = new ServiceCollection();
+        serviceCollection.AddSingleton<ICoinbaseATConfiguration, CoinbaseATConfiguration>();
         serviceCollection.AddHttpClient<IHttpClientService, HttpClientService>(
             nameof(IHttpClientService),
             options =>
             {
                 options.BaseAddress = new Uri("https://api.coinbase.com/api");
+                options.DefaultRequestHeaders.Add("User-Agent", "CoinbaseATClient");
+                options.DefaultRequestHeaders.Add("CB-ACCESS-KEY", coinbaseATConfiguration.APIKey);
             }
         );
+        serviceCollection.AddSingleton<IHttpClientService, HttpClientService>();
         serviceCollection.AddSingleton<IAccountsService, AccountsService>();
 
         return serviceCollection.BuildServiceProvider();

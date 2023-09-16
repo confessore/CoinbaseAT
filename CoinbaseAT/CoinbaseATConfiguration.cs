@@ -9,31 +9,24 @@ namespace CoinbaseAT;
 
 public class CoinbaseATConfiguration : ICoinbaseATConfiguration
 {
-    public CoinbaseATConfiguration(string apiKey, string unsignedSignature, string passphrase)
+    public CoinbaseATConfiguration(string apiKey, string apiSecret)
     {
-        if (
-            string.IsNullOrEmpty(apiKey)
-            || string.IsNullOrEmpty(unsignedSignature)
-            || string.IsNullOrEmpty(passphrase)
-        )
+        if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(apiSecret))
         {
             throw new ArgumentException(
-                $"{nameof(CoinbaseATConfiguration)} requires parameters {nameof(apiKey)}, {nameof(unsignedSignature)} and {nameof(passphrase)} to be populated."
+                $"{nameof(CoinbaseATConfiguration)} requires parameters {nameof(apiKey)}, and {nameof(apiSecret)} to be populated."
             );
         }
 
-        ApiKey = apiKey;
-        UnsignedSignature = unsignedSignature;
-        Passphrase = passphrase;
+        APIKey = apiKey;
+        APISecret = apiSecret;
     }
 
-    public string ApiKey { get; }
+    public string APIKey { get; }
 
-    public string UnsignedSignature { get; }
+    public string APISecret { get; }
 
-    public string Passphrase { get; }
-
-    public static string ComputeSignature(
+    public string ComputeSignature(
         HttpMethod httpMethod,
         string secret,
         double timestamp,

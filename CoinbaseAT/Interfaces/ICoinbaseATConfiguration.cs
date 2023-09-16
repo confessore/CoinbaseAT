@@ -2,4 +2,16 @@
 
 namespace CoinbaseAT.Interfaces;
 
-public interface ICoinbaseATConfiguration { }
+public interface ICoinbaseATConfiguration
+{
+    string APIKey { get; }
+
+    string APISecret { get; }
+    string ComputeSignature(
+        HttpMethod httpMethod,
+        string secret,
+        double timestamp,
+        string requestUri,
+        string contentBody = ""
+    );
+}
