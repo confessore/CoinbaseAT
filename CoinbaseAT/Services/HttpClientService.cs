@@ -52,11 +52,11 @@ public class HttpClientService : IHttpClientService
             requestPath,
             contentBody
         );
-        requestMessage.Headers.Add("CB-ACCESS-SIGN", signature);
         requestMessage.Headers.Add(
             "CB-ACCESS-TIMESTAMP",
             timestamp.ToString("F0", CultureInfo.InvariantCulture)
         );
+        requestMessage.Headers.Add("CB-ACCESS-SIGN", signature);
         return requestMessage;
     }
 

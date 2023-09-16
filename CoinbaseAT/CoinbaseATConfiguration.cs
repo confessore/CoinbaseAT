@@ -34,13 +34,13 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
         string contentBody = ""
     )
     {
-        var convertedString = Convert.FromBase64String(apiSecret);
+        var bytes = Convert.FromBase64String(apiSecret);
         var prehash =
             timestamp.ToString("F0", CultureInfo.InvariantCulture)
             + httpMethod.Method
             + requestPath
             + contentBody;
-        return HashString(prehash, convertedString);
+        return HashString(prehash, bytes);
     }
 
     private static string HashString(string str, byte[] secret)
