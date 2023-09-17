@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
-using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using CoinbaseAT.Interfaces;
@@ -35,10 +34,7 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
     {
         var bytes = Encoding.UTF8.GetBytes(APISecret);
         var prehash =
-            Math.Floor(timestamp).ToString()
-            + httpMethod.Method
-            + requestPath
-            + contentBody;
+            Math.Floor(timestamp).ToString() + httpMethod.Method + requestPath + contentBody;
         return HashString(prehash, bytes);
     }
 
@@ -46,6 +42,7 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
     {
         var bytes = Encoding.UTF8.GetBytes(str);
         using var hmaccsha = new HMACSHA256(secret);
-        return Convert.ToHexString(hmaccsha.ComputeHash(bytes)).ToLower();;
+        return Convert.ToHexString(hmaccsha.ComputeHash(bytes)).ToLower();
+        ;
     }
 }

@@ -14,10 +14,7 @@ public class AccountsService : CoinbaseATService, IAccountsService
     public AccountsService(IHttpClientService httpClientService)
         : base(httpClientService) { }
 
-    public async Task<IEnumerable<Account>> ListAccountsAsync(
-        int? limit = null,
-        string? cursor = null
-    )
+    public async Task<AccountList> ListAccountsAsync(int? limit = null, string? cursor = null)
     {
         var requestPath = "/api/v3/brokerage/accounts";
         /*var stringBuilder = new StringBuilder();
@@ -39,7 +36,7 @@ public class AccountsService : CoinbaseATService, IAccountsService
         }
 
         var fullRequestPath = stringBuilder.ToString();*/
-        return await SendServiceCall<List<Account>>(HttpMethod.Get, requestPath);
+        return await SendServiceCall<AccountList>(HttpMethod.Get, requestPath);
     }
 
     public async Task<Account> GetAccountAsync(string uuid)

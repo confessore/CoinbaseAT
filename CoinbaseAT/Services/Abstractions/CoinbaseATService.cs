@@ -21,8 +21,11 @@ public abstract class CoinbaseATService
         string contentBody = ""
     )
     {
-        var httpRequestMessage =
-            _httpClientService.CreateHttpRequestMessage(httpMethod, requestPath, contentBody);
+        var httpRequestMessage = _httpClientService.CreateHttpRequestMessage(
+            httpMethod,
+            requestPath,
+            contentBody
+        );
 
         var httpResponseMessage = await _httpClientService.HttpClient
             .SendAsync(httpRequestMessage)
@@ -40,8 +43,7 @@ public abstract class CoinbaseATService
 
         try
         {
-            var obj = JsonSerializer.Deserialize<dynamic>(result);
-            message = obj["Message"];
+            message = result;
         }
         catch (Exception e)
         {
@@ -81,6 +83,8 @@ public abstract class CoinbaseATService
             return (T)(object)result;
         }
 
-        return JsonSerializer.Deserialize<T>(result);
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
+        return JsonSerializer.Deserialize<T>(result, options);
     }
 }

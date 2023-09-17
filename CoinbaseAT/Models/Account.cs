@@ -32,27 +32,27 @@ public class Account : IAccount
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public bool Default { get; set; }
+    public bool? Default { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public bool Active { get; set; }
+    public bool? Active { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public DateTime Created_At { get; set; }
+    public DateTime? Created_At { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public DateTime Updated_At { get; set; }
+    public DateTime? Updated_At { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public DateTime Deleted_At { get; set; }
+    public DateTime? Deleted_At { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
@@ -62,7 +62,7 @@ public class Account : IAccount
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public bool Ready { get; set; }
+    public bool? Ready { get; set; }
 
     /// <summary>
     /// <inheritdoc/>

@@ -15,7 +15,7 @@ public interface IAccountList
     /// <summary>
     ///
     /// </summary>
-    bool Has_Next { get; set; }
+    bool? Has_Next { get; set; }
 
     /// <summary>
     ///
@@ -25,5 +25,5 @@ public interface IAccountList
     /// <summary>
     ///
     /// </summary>
-    int Size { get; set; }
+    int? Size { get; set; }
 }

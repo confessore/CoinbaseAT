@@ -39,8 +39,7 @@ public class HttpClientService : IHttpClientService
             new Uri(HttpClient.BaseAddress, requestPath)
         )
         {
-            Content =
-                new StringContent(contentBody, Encoding.UTF8, "application/json")
+            Content = new StringContent(contentBody, Encoding.UTF8, "application/json")
         };
         var timestamp = DateTime.UtcNow.ToTimestamp();
         var signature = _coinbaseATConfiguration.ComputeSignature(

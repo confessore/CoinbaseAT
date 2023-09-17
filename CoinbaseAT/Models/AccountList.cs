@@ -17,7 +17,7 @@ public class AccountList : IAccountList
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public bool Has_Next { get; set; }
+    public bool? Has_Next { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
@@ -27,5 +27,5 @@ public class AccountList : IAccountList
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public int Size { get; set; }
+    public int? Size { get; set; }
 }
