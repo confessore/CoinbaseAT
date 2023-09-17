@@ -10,25 +10,25 @@ public interface IFeeTier
     /// <summary>
     /// Pricing tier for user, determined by notional (USD) volume.
     /// </summary>
-    public string? Pricing_Tier { get; set; }
+    string? Pricing_Tier { get; set; }
 
     /// <summary>
     /// Lower bound (inclusive) of pricing tier in notional volume.
     /// </summary>
-    public string? USD_From { get; set; }
+    string? USD_From { get; set; }
 
     /// <summary>
     /// Upper bound (exclusive) of pricing tier in notional volume.
     /// </summary>
-    public string? USD_To { get; set; }
+    string? USD_To { get; set; }
 
     /// <summary>
     /// Taker fee rate, applied if the order takes liquidity.
     /// </summary>
-    public string? Taker_Fee_Rate { get; set; }
+    string? Taker_Fee_Rate { get; set; }
 
     /// <summary>
     /// Maker fee rate, applied if the order creates liquidity.
     /// </summary>
-    public string? Maker_Fee_Rate { get; set; }
+    string? Maker_Fee_Rate { get; set; }
 }

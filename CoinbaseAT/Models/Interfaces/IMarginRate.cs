@@ -10,5 +10,5 @@ public interface IMarginRate
     /// <summary>
     /// String representation allows for unlimited precision.
     /// </summary>
-    public string? Value { get; set; }
+    string? Value { get; set; }
 }

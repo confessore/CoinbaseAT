@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
+using System;
 using System.Globalization;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using CoinbaseAT.Interfaces;

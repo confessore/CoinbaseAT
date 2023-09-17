@@ -1,27 +1,22 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
-using System;
+using System.Collections.Generic;
 using CoinbaseAT.Models.Interfaces;
 
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// <inheritdoc cref="IFCMTradingSessionDetails"/>
+/// <inheritdoc cref="IFillList"/>
 /// </summary>
-public class FCMTradingSessionDetails : IFCMTradingSessionDetails
+public class FillList : IFillList
 {
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public bool? Is_Session_Open { get; set; }
+    public IEnumerable<Fill>? Fills { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public DateTime? Open_Time { get; set; }
-
-    /// <summary>
-    /// <inheritdoc/>
-    /// </summary>
-    public DateTime? Close_Time { get; set; }
+    public string? Cursor { get; set; }
 }

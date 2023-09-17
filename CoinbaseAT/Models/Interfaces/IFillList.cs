@@ -7,10 +7,15 @@ namespace CoinbaseAT.Models.Interfaces;
 /// <summary>
 ///
 /// </summary>
-public interface ICandleList
+public interface IFillList
 {
     /// <summary>
-    ///
+    /// All fills matching the filters.
     /// </summary>
-    IEnumerable<Candle>? Candles { get; set; }
+    IEnumerable<Fill>? Fills { get; set; }
+
+    /// <summary>
+    /// Cursor for paginating. Users can use this string to pass in the next call to this endpoint, and repeat this process to fetch all fills through pagination.
+    /// </summary>
+    string? Cursor { get; set; }
 }

@@ -10,10 +10,10 @@ public interface IGoodsAndServicesTax
     /// <summary>
     ///
     /// </summary>
-    public string? Rate { get; set; }
+    string? Rate { get; set; }
 
     /// <summary>
     /// Possible values: [INCLUSIVE, EXCLUSIVE]
     /// </summary>
-    public string? Type { get; set; }
+    string? Type { get; set; }
 }
