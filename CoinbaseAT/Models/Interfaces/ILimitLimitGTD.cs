@@ -3,7 +3,7 @@
 namespace CoinbaseAT.Models.Interfaces;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public interface ILimitLimitGTD
 {
