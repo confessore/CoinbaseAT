@@ -3,22 +3,22 @@
 namespace CoinbaseAT.Interfaces;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public interface ICoinbaseATConfiguration
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     string APIKey { get; }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     string APISecret { get; }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="method"></param>
     /// <param name="timestamp"></param>
