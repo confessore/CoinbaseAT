@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
+using System.Net.Http.Headers;
 using CoinbaseAT.Interfaces;
 using CoinbaseAT.Services;
 using CoinbaseAT.Services.Interfaces;
@@ -101,7 +102,9 @@ public class CoinbaseATClient : ICoinbaseATClient
             {
                 options.BaseAddress = new Uri("https://api.coinbase.com");
                 options.DefaultRequestHeaders.Add("User-Agent", "CoinbaseATClient");
-                options.DefaultRequestHeaders.Add("Accept", "application/json");
+                options.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json")
+                );
                 options.DefaultRequestHeaders.Add("CB-ACCESS-KEY", coinbaseATConfiguration.APIKey);
             }
         );

@@ -47,7 +47,6 @@ public class HttpClientService : IHttpClientService
         var timestamp = DateTime.UtcNow.ToTimestamp();
         var signature = _coinbaseATConfiguration.ComputeSignature(
             httpMethod,
-            _coinbaseATConfiguration.APISecret,
             timestamp,
             requestPath,
             contentBody

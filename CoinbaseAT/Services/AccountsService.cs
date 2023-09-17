@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
-using System.Text;
 using CoinbaseAT.Models;
 using CoinbaseAT.Services.Abstractions;
 using CoinbaseAT.Services.Interfaces;
@@ -20,8 +19,9 @@ public class AccountsService : CoinbaseATService, IAccountsService
         string? cursor = null
     )
     {
-        var stringBuilder = new StringBuilder();
-        stringBuilder.Append("/api/v3/brokerage/accounts");
+        var requestPath = "/api/v3/brokerage/accounts";
+        /*var stringBuilder = new StringBuilder();
+        stringBuilder.Append(requestPath);
         if (limit != null || cursor != null)
         {
             if (limit != null && cursor != null)
@@ -38,7 +38,7 @@ public class AccountsService : CoinbaseATService, IAccountsService
             }
         }
 
-        var requestPath = stringBuilder.ToString();
+        var fullRequestPath = stringBuilder.ToString();*/
         return await SendServiceCall<List<Account>>(HttpMethod.Get, requestPath);
     }
 
