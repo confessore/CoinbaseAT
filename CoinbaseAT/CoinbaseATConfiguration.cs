@@ -7,6 +7,9 @@ using CoinbaseAT.Interfaces;
 
 namespace CoinbaseAT;
 
+/// <summary>
+/// <inheritdoc cref="ICoinbaseATConfiguration"/>
+/// </summary>
 public class CoinbaseATConfiguration : ICoinbaseATConfiguration
 {
     public CoinbaseATConfiguration(string apiKey, string apiSecret)
@@ -22,10 +25,19 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
         APISecret = apiSecret;
     }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public string APIKey { get; }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public string APISecret { get; }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public string ComputeSignature(
         HttpMethod httpMethod,
         double timestamp,
