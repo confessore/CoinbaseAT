@@ -22,9 +22,7 @@ public abstract class CoinbaseATService
     )
     {
         var httpRequestMessage =
-            contentBody == string.Empty
-                ? _httpClientService.CreateHttpRequestMessage(httpMethod, requestPath)
-                : _httpClientService.CreateHttpRequestMessage(httpMethod, requestPath, contentBody);
+            _httpClientService.CreateHttpRequestMessage(httpMethod, requestPath, contentBody);
 
         var httpResponseMessage = await _httpClientService.HttpClient
             .SendAsync(httpRequestMessage)
@@ -38,20 +36,22 @@ public abstract class CoinbaseATService
         var result = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         string message;
+        Exception exception = new();
 
         try
         {
             var obj = JsonSerializer.Deserialize<dynamic>(result);
             message = obj["Message"];
         }
-        catch
+        catch (Exception e)
         {
+            exception = e;
             message = contentBody;
         }
 
         var coinbaseATHttpRequestException = new CoinbaseATHttpRequestException(
             message,
-            null,
+            exception,
             httpResponseMessage.StatusCode
         )
         {

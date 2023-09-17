@@ -33,9 +33,9 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
         string contentBody = ""
     )
     {
-        var bytes = Convert.FromBase64String(APISecret);
+        var bytes = Encoding.UTF8.GetBytes(APISecret);
         var prehash =
-            timestamp.ToString("F0", CultureInfo.InvariantCulture)
+            Math.Floor(timestamp).ToString()
             + httpMethod.Method
             + requestPath
             + contentBody;
@@ -46,6 +46,6 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
     {
         var bytes = Encoding.UTF8.GetBytes(str);
         using var hmaccsha = new HMACSHA256(secret);
-        return Convert.ToBase64String(hmaccsha.ComputeHash(bytes));
+        return Convert.ToHexString(hmaccsha.ComputeHash(bytes)).ToLower();;
     }
 }

@@ -40,9 +40,7 @@ public class HttpClientService : IHttpClientService
         )
         {
             Content =
-                contentBody == string.Empty
-                    ? null
-                    : new StringContent(contentBody, Encoding.UTF8, "application/json")
+                new StringContent(contentBody, Encoding.UTF8, "application/json")
         };
         var timestamp = DateTime.UtcNow.ToTimestamp();
         var signature = _coinbaseATConfiguration.ComputeSignature(
