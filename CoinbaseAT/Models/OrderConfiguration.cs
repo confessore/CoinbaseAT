@@ -7,13 +7,13 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class OrderConfiguration : IOrderConfiguration
 {
-    public MarketMarketLoc Market_Market_Loc { get; set; }
+    public MarketMarketLoc? Market_Market_Loc { get; set; }
 
-    public LimitLimitGTC Limit_Limit_GTC { get; set; }
+    public LimitLimitGTC? Limit_Limit_GTC { get; set; }
 
-    public LimitLimitGTD LimitLimitGTD { get; set; }
+    public LimitLimitGTD? LimitLimitGTD { get; set; }
 
-    public StopLimitStopLimitGTC Stop_Limit_Stop_Limit_GTC { get; set; }
+    public StopLimitStopLimitGTC? Stop_Limit_Stop_Limit_GTC { get; set; }
 
-    public StopLimitStopLimitGTD Stop_Limit_Stop_Limit_GTD { get; set; }
+    public StopLimitStopLimitGTD? Stop_Limit_Stop_Limit_GTD { get; set; }
 }
