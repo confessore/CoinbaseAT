@@ -10,5 +10,5 @@ public interface ICandleList
     /// <summary>
     ///
     /// </summary>
-    public IEnumerable<Candle>? Candles { get; set; }
+    IEnumerable<Candle>? Candles { get; set; }
 }

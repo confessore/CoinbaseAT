@@ -5,7 +5,7 @@ namespace CoinbaseAT.Models.Interfaces;
 /// <summary>
 ///
 /// </summary>
-internal interface IProduct
+public interface IProduct
 {
     /// <summary>
     /// The trading pair.

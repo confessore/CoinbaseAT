@@ -10,30 +10,30 @@ public interface ICandle
     /// <summary>
     /// Timestamp for bucket start time, in UNIX time.
     /// </summary>
-    public string? Start { get; set; }
+    string? Start { get; set; }
 
     /// <summary>
     /// Lowest price during the bucket interval.
     /// </summary>
-    public string? Low { get; set; }
+    string? Low { get; set; }
 
     /// <summary>
     /// Highest price during the bucket interval.
     /// </summary>
-    public string? High { get; set; }
+    string? High { get; set; }
 
     /// <summary>
     /// Opening price (first trade) in the bucket interval.
     /// </summary>
-    public string? Open { get; set; }
+    string? Open { get; set; }
 
     /// <summary>
     /// Closing price (last trade) in the bucket interval.
     /// </summary>
-    public string? Close { get; set; }
+    string? Close { get; set; }
 
     /// <summary>
     /// Volume of trading activity during the bucket interval.
     /// </summary>
-    public string? Volume { get; set; }
+    string? Volume { get; set; }
 }
