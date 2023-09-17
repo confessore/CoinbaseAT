@@ -1,0 +1,29 @@
+﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
+
+namespace CoinbaseAT.Models.Interfaces;
+
+/// <summary>
+///
+/// </summary>
+public interface IStopLimitStopLimitGTC
+{
+    /// <summary>
+    /// Amount of base currency to spend on order
+    /// </summary>
+    string? Base_Size { get; set; }
+
+    /// <summary>
+    /// Ceiling price for which the order should get filled
+    /// </summary>
+    string? Limit_Price { get; set; }
+
+    /// <summary>
+    /// Price at which the order should trigger - if stop direction is Up, then the order will trigger when the last trade price goes above this, otherwise order will trigger when last trade price goes below this price.
+    /// </summary>
+    string? Stop_Price { get; set; }
+
+    /// <summary>
+    /// Possible values: [UNKNOWN_STOP_DIRECTION, STOP_DIRECTION_STOP_UP, STOP_DIRECTION_STOP_DOWN]
+    /// </summary>
+    string? Stop_Direction { get; set; }
+}

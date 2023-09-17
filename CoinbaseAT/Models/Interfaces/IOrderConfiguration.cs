@@ -3,27 +3,32 @@
 namespace CoinbaseAT.Models.Interfaces;
 
 /// <summary>
-/// 
+///
 /// </summary>
-public interface ILimitLimitGTD
+public interface IOrderConfiguration
 {
     /// <summary>
-    /// <inheritdoc/>
+    ///
     /// </summary>
-    string? Base_Size { get; set; }
+    MarketMarketLoc? Market_Market_Loc { get; set; }
 
     /// <summary>
-    /// <inheritdoc/>
+    ///
     /// </summary>
-    string? Limit_Price { get; set; }
+    LimitLimitGTC? Limit_Limit_GTC { get; set; }
 
     /// <summary>
-    /// <inheritdoc/>
+    ///
     /// </summary>
-    DateTime? End_Time { get; set; }
+    LimitLimitGTD? LimitLimitGTD { get; set; }
 
     /// <summary>
-    /// <inheritdoc/>
+    ///
     /// </summary>
-    bool? Post_Only { get; set; }
+    StopLimitStopLimitGTC? Stop_Limit_Stop_Limit_GTC { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    StopLimitStopLimitGTD? Stop_Limit_Stop_Limit_GTD { get; set; }
 }

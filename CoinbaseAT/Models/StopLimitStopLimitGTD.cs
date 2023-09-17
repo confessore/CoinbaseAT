@@ -5,32 +5,32 @@ using CoinbaseAT.Models.Interfaces;
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// <inheritdoc cref="IOrderConfiguration"/>
+/// <inheritdoc cref="IStopLimitStopLimitGTD"/>
 /// </summary>
-public class OrderConfiguration : IOrderConfiguration
+public class StopLimitStopLimitGTD : IStopLimitStopLimitGTD
 {
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public MarketMarketLoc? Market_Market_Loc { get; set; }
+    public string? Base_Size { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public LimitLimitGTC? Limit_Limit_GTC { get; set; }
+    public string? Limit_Price { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public LimitLimitGTD? LimitLimitGTD { get; set; }
+    public string? Stop_Price { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public StopLimitStopLimitGTC? Stop_Limit_Stop_Limit_GTC { get; set; }
+    public DateTime? End_Time { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public StopLimitStopLimitGTD? Stop_Limit_Stop_Limit_GTD { get; set; }
+    public string? Stop_Direction { get; set; }
 }
