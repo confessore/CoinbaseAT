@@ -43,6 +43,5 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
         var bytes = Encoding.UTF8.GetBytes(str);
         using var hmaccsha = new HMACSHA256(secret);
         return Convert.ToHexString(hmaccsha.ComputeHash(bytes)).ToLower();
-        ;
     }
 }
