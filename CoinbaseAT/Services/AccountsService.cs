@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using CoinbaseAT.Models;
 using CoinbaseAT.Services.Abstractions;
@@ -19,7 +20,7 @@ public class AccountsService : CoinbaseATService, IAccountsService
     public async Task<AccountList> ListAccountsAsync(int? limit = null, string? cursor = null)
     {
         var requestPath = "/api/v3/brokerage/accounts";
-        /*var stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder();
         stringBuilder.Append(requestPath);
         if (limit != null || cursor != null)
         {
@@ -37,8 +38,13 @@ public class AccountsService : CoinbaseATService, IAccountsService
             }
         }
 
-        var fullRequestPath = stringBuilder.ToString();*/
-        return await SendServiceCall<AccountList>(HttpMethod.Get, requestPath);
+        var fullRequestPath = stringBuilder.ToString();
+        return await SendServiceCall<AccountList>(
+            HttpMethod.Get,
+            requestPath,
+            fullRequestPath,
+            string.Empty
+        );
     }
 
     public async Task<Account> GetAccountAsync(string uuid)

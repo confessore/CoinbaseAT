@@ -15,4 +15,11 @@ public interface IHttpClientService
         string requestPath,
         string contentBody = ""
     );
+
+    HttpRequestMessage CreateHttpRequestMessage(
+        HttpMethod httpMethod,
+        string requestPath,
+        string fullRequestPath,
+        string contentBody = ""
+    );
 }

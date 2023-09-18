@@ -58,6 +58,35 @@ public class HttpClientService : IHttpClientService
         return requestMessage;
     }
 
+    public HttpRequestMessage CreateHttpRequestMessage(
+        HttpMethod httpMethod,
+        string requestPath,
+        string fullRequestPath,
+        string contentBody = ""
+    )
+    {
+        var requestMessage = new HttpRequestMessage(
+            httpMethod,
+            new Uri(HttpClient.BaseAddress, fullRequestPath)
+        )
+        {
+            Content = new StringContent(contentBody, Encoding.UTF8, "application/json")
+        };
+        var timestamp = DateTime.UtcNow.ToTimestamp();
+        var signature = _coinbaseATConfiguration.ComputeSignature(
+            httpMethod,
+            timestamp,
+            requestPath,
+            contentBody
+        );
+        requestMessage.Headers.Add(
+            "CB-ACCESS-TIMESTAMP",
+            timestamp.ToString("F0", CultureInfo.InvariantCulture)
+        );
+        requestMessage.Headers.Add("CB-ACCESS-SIGN", signature);
+        return requestMessage;
+    }
+
     private HttpClient CreateHttpClient() =>
         _httpClientFactory.CreateClient(nameof(IHttpClientService));
 }
