@@ -12,7 +12,7 @@ Feel free to open a pull request.
 
 ### Currently
 
-Most models are created.
+All models are created (please open an issue if there is something missing but I am pretty sure that they are all there)
 
 Services are stubbed.
 
