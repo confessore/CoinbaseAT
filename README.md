@@ -2,26 +2,18 @@
 
 ## Coinbase Advanced Trade
 
-### Pre-Release
+### Initial Release
 
-I recognized that no library exists for the Coinbase Advanced Trade API.
+CoinbaseAT is now initially released!
 
-Please bear with me during pre-release. As much as I wish for this to be production ready overnight, I am working as diligently as possible.
+You can find the package on nuget at [https://www.nuget.org/packages/CoinbaseAT/1.0.0](https://www.nuget.org/packages/CoinbaseAT/1.0.0)
 
-Feel free to open a pull request.
+Feel free to open pull requests or issues
 
 ### Currently
 
+v3 Signature Generator is functional and ready to sign headers
+
 All models are created (please open an issue if there is something missing but I am pretty sure that they are all there)
 
-Services are stubbed.
-
-v3 Signature Generator is functional and ready to sign headers.
-
-### TODO
-
-FeesService
-
-OrdersService
-
-ProductsService
+ALL services are created (please open an issue if there is something missing but I am pretty sure that they are all there)

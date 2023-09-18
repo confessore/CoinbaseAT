@@ -3,11 +3,39 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>CoinbaseAT</Title>
+    <Authors>Steven Confessore, Balanced Solutions Software, CoinbaseAT Contributors</Authors>
+    <Description>The unofficial .NET/C# client library for the Coinbase Advanced Trade API</Description>
+    <Copyright>2023</Copyright>
+    <PackageProjectUrl>https://github.com/confessore/CoinbaseAT</PackageProjectUrl>
+    <PackageIcon>866448CD-6064-4895-8278-6E1953F8B397.PNG</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/confessore/CoinbaseAT</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>coinbase;coinbase-api;coinbase-advanced;coinbase-advanced-trade</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Models\Enums\" />
     <Folder Include="Models\Abstractions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Downloads\866448CD-6064-4895-8278-6E1953F8B397.PNG">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
