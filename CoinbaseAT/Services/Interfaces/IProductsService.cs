@@ -48,4 +48,27 @@ public interface IProductsService
     /// <param name="product_id"></param>
     /// <returns></returns>
     Task<Product> GetProductAsync(string product_id);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="product_id"></param>
+    /// <param name="start"></param>
+    /// <param name="end"></param>
+    /// <param name="granularity"></param>
+    /// <returns></returns>
+    Task<CandlesResponse> GetProductCandlesAsync(
+        string product_id,
+        string start,
+        string end,
+        string granularity
+    );
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="product_id"></param>
+    /// <param name="limit"></param>
+    /// <returns></returns>
+    Task<TradesResponse> GetMarketTradesAsync(string product_id, int limit = 0);
 }

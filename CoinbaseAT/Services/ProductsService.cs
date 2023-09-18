@@ -121,4 +121,41 @@ public class ProductsService : CoinbaseATService, IProductsService
             $"/api/v3/brokerage/products/{product_id}"
         );
     }
+
+    public async Task<CandlesResponse> GetProductCandlesAsync(
+        string product_id,
+        string start,
+        string end,
+        string granularity
+    )
+    {
+        var requestPath = $"/api/v3/brokerage/products/{product_id}/candles";
+        var stringBuilder = new StringBuilder();
+        stringBuilder.Append(requestPath);
+        stringBuilder.Append($"?start={start}");
+        stringBuilder.Append($"&end={end}");
+        stringBuilder.Append($"&granularity={granularity}");
+        var fullRequestPath = stringBuilder.ToString();
+        return await SendServiceCall<CandlesResponse>(
+            HttpMethod.Get,
+            requestPath,
+            fullRequestPath,
+            string.Empty
+        );
+    }
+
+    public async Task<TradesResponse> GetMarketTradesAsync(string product_id, int limit = 0)
+    {
+        var requestPath = $"/api/v3/brokerage/products/{product_id}/ticker";
+        var stringBuilder = new StringBuilder();
+        stringBuilder.Append(requestPath);
+        stringBuilder.Append($"?limit={limit}");
+        var fullRequestPath = stringBuilder.ToString();
+        return await SendServiceCall<TradesResponse>(
+            HttpMethod.Get,
+            requestPath,
+            fullRequestPath,
+            string.Empty
+        );
+    }
 }
