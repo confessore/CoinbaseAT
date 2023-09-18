@@ -10,6 +10,22 @@ namespace CoinbaseAT.Services.Interfaces;
 /// </summary>
 public interface IProductsService
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="product_ids"></param>
+    /// <returns></returns>
+    Task<PricebooksResponse> GetBestBidAskAsync(string[]? product_ids = null);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="limit"></param>
+    /// <param name="offset"></param>
+    /// <param name="product_type"></param>
+    /// <param name="product_ids"></param>
+    /// <param name="contract_expiry_type"></param>
+    /// <returns></returns>
     Task<ProductsResponse> ListProductsAsync(
         int limit = 0,
         int? offset = null,
@@ -18,5 +34,10 @@ public interface IProductsService
         string? contract_expiry_type = null
     );
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="product_id"></param>
+    /// <returns></returns>
     Task<Product> GetProductAsync(string product_id);
 }
