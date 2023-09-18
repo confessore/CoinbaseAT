@@ -17,6 +17,9 @@ public class ProductsService : CoinbaseATService, IProductsService
     public ProductsService(IHttpClientService httpClientService)
         : base(httpClientService) { }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public async Task<PricebooksResponse> GetBestBidAskAsync(string[]? product_ids = null)
     {
         var requestPath = "/api/v3/brokerage/best_bid_ask";
@@ -49,6 +52,9 @@ public class ProductsService : CoinbaseATService, IProductsService
         );
     }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public async Task<PricebookResponse> GetProductBookAsync(string product_id, int limit = 0)
     {
         var requestPath = "/api/v3/brokerage/product_book";
@@ -70,6 +76,9 @@ public class ProductsService : CoinbaseATService, IProductsService
         );
     }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public async Task<ProductsResponse> ListProductsAsync(
         int limit = 0,
         int? offset = null,
@@ -114,6 +123,9 @@ public class ProductsService : CoinbaseATService, IProductsService
         );
     }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public async Task<Product> GetProductAsync(string product_id)
     {
         return await SendServiceCall<Product>(
@@ -122,6 +134,9 @@ public class ProductsService : CoinbaseATService, IProductsService
         );
     }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public async Task<CandlesResponse> GetProductCandlesAsync(
         string product_id,
         string start,
@@ -144,6 +159,9 @@ public class ProductsService : CoinbaseATService, IProductsService
         );
     }
 
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public async Task<TradesResponse> GetMarketTradesAsync(string product_id, int limit = 0)
     {
         var requestPath = $"/api/v3/brokerage/products/{product_id}/ticker";
