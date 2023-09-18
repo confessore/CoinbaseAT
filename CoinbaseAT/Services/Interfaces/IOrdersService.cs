@@ -13,34 +13,24 @@ public interface IOrdersService
     /// <summary>
     ///
     /// </summary>
-    /// <param name="order_id"></param>
     /// <param name="client_order_id"></param>
-    /// <param name="user_native_currency"></param>
+    /// <param name="product_id"></param>
+    /// <param name="side"></param>
+    /// <param name="order_configuration"></param>
     /// <returns></returns>
-    Task<OrderResponse> GetOrderAsync(
-        string order_id,
-        string? client_order_id = null,
-        string? user_native_currency = null
+    Task<ResultsResponse> CreateOrderAsync(
+        string client_order_id,
+        string product_id,
+        string? side,
+        OrderConfiguration? order_configuration
     );
 
     /// <summary>
     ///
     /// </summary>
-    /// <param name="order_id"></param>
-    /// <param name="product_id"></param>
-    /// <param name="start_sequence_timestamp"></param>
-    /// <param name="end_sequence_timestamp"></param>
-    /// <param name="limit"></param>
-    /// <param name="cursor"></param>
+    /// <param name="order_ids"></param>
     /// <returns></returns>
-    Task<FillsResponse> ListFillsAsync(
-        string? order_id = null,
-        string? product_id = null,
-        string? start_sequence_timestamp = null,
-        string? end_sequence_timestamp = null,
-        long? limit = null,
-        string? cursor = null
-    );
+    Task<ResultsResponse> CancelOrdersAsync(string[] order_ids);
 
     /// <summary>
     ///
@@ -71,5 +61,37 @@ public interface IOrdersService
         string? product_type = null,
         string? order_placement_source = null,
         string? contract_expiry_type = null
+    );
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="order_id"></param>
+    /// <param name="product_id"></param>
+    /// <param name="start_sequence_timestamp"></param>
+    /// <param name="end_sequence_timestamp"></param>
+    /// <param name="limit"></param>
+    /// <param name="cursor"></param>
+    /// <returns></returns>
+    Task<FillsResponse> ListFillsAsync(
+        string? order_id = null,
+        string? product_id = null,
+        string? start_sequence_timestamp = null,
+        string? end_sequence_timestamp = null,
+        long? limit = null,
+        string? cursor = null
+    );
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="order_id"></param>
+    /// <param name="client_order_id"></param>
+    /// <param name="user_native_currency"></param>
+    /// <returns></returns>
+    Task<OrderResponse> GetOrderAsync(
+        string order_id,
+        string? client_order_id = null,
+        string? user_native_currency = null
     );
 }

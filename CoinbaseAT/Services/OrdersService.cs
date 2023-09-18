@@ -2,6 +2,7 @@
 
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using CoinbaseAT.Models;
 using CoinbaseAT.Services.Abstractions;
@@ -20,98 +21,33 @@ public class OrdersService : CoinbaseATService, IOrdersService
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public async Task<OrderResponse> GetOrderAsync(
-        string order_id,
-        string? client_order_id = null,
-        string? user_native_currency = null
+    public async Task<ResultsResponse> CreateOrderAsync(
+        string client_order_id,
+        string product_id,
+        string? side,
+        OrderConfiguration? order_configuration
     )
     {
-        var requestPath = $"/api/v3/brokerage/orders/historical/{order_id}";
-        var stringBuilder = new StringBuilder();
-        stringBuilder.Append(requestPath);
-        if (client_order_id != null)
+        var requestPath = $"/api/v3/brokerage/orders";
+        var order = new Order()
         {
-            stringBuilder.Append($"?client_order_id={client_order_id}");
-        }
-
-        if (user_native_currency != null)
-        {
-            stringBuilder.Append($"&user_native_currency={user_native_currency}");
-        }
-
-        var fullRequestPath = stringBuilder.ToString();
-        if (fullRequestPath.Contains('&') && !fullRequestPath.Contains('?'))
-        {
-            fullRequestPath = fullRequestPath.Remove(requestPath.Length, 1);
-            fullRequestPath = fullRequestPath.Insert(requestPath.Length, "?");
-        }
-
-        return await SendServiceCall<OrderResponse>(
-            HttpMethod.Get,
-            requestPath,
-            fullRequestPath,
-            string.Empty
-        );
+            Client_Order_Id = client_order_id,
+            Product_Id = product_id,
+            Side = side,
+            Order_Configuration = order_configuration
+        };
+        var json = JsonSerializer.Serialize(order);
+        return await SendServiceCall<ResultsResponse>(HttpMethod.Post, requestPath, json);
     }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public async Task<FillsResponse> ListFillsAsync(
-        string? order_id = null,
-        string? product_id = null,
-        string? start_sequence_timestamp = null,
-        string? end_sequence_timestamp = null,
-        long? limit = null,
-        string? cursor = null
-    )
+    public async Task<ResultsResponse> CancelOrdersAsync(string[] order_ids)
     {
-        var requestPath = $"/api/v3/brokerage/orders/historical/fill";
-        var stringBuilder = new StringBuilder();
-        stringBuilder.Append(requestPath);
-        if (order_id != null)
-        {
-            stringBuilder.Append($"?order_id={order_id}");
-        }
-
-        if (product_id != null)
-        {
-            stringBuilder.Append($"&product_id={product_id}");
-        }
-
-        if (start_sequence_timestamp != null)
-        {
-            stringBuilder.Append($"&start_sequence_timestamp={start_sequence_timestamp}");
-        }
-
-        if (end_sequence_timestamp != null)
-        {
-            stringBuilder.Append($"&end_sequence_timestamp={end_sequence_timestamp}");
-        }
-
-        if (limit != null)
-        {
-            stringBuilder.Append($"&limit={limit}");
-        }
-
-        if (cursor != null)
-        {
-            stringBuilder.Append($"&cursor={cursor}");
-        }
-
-        var fullRequestPath = stringBuilder.ToString();
-        if (fullRequestPath.Contains('&') && !fullRequestPath.Contains('?'))
-        {
-            fullRequestPath = fullRequestPath.Remove(requestPath.Length, 1);
-            fullRequestPath = fullRequestPath.Insert(requestPath.Length, "?");
-        }
-
-        return await SendServiceCall<FillsResponse>(
-            HttpMethod.Get,
-            requestPath,
-            fullRequestPath,
-            string.Empty
-        );
+        var requestPath = $"/api/v3/brokerage/orders/batch_cancel";
+        var json = JsonSerializer.Serialize(order_ids);
+        return await SendServiceCall<ResultsResponse>(HttpMethod.Post, requestPath, json);
     }
 
     /// <summary>
@@ -206,6 +142,103 @@ public class OrdersService : CoinbaseATService, IOrdersService
         }
 
         return await SendServiceCall<FillsResponse>(
+            HttpMethod.Get,
+            requestPath,
+            fullRequestPath,
+            string.Empty
+        );
+    }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public async Task<FillsResponse> ListFillsAsync(
+        string? order_id = null,
+        string? product_id = null,
+        string? start_sequence_timestamp = null,
+        string? end_sequence_timestamp = null,
+        long? limit = null,
+        string? cursor = null
+    )
+    {
+        var requestPath = $"/api/v3/brokerage/orders/historical/fill";
+        var stringBuilder = new StringBuilder();
+        stringBuilder.Append(requestPath);
+        if (order_id != null)
+        {
+            stringBuilder.Append($"?order_id={order_id}");
+        }
+
+        if (product_id != null)
+        {
+            stringBuilder.Append($"&product_id={product_id}");
+        }
+
+        if (start_sequence_timestamp != null)
+        {
+            stringBuilder.Append($"&start_sequence_timestamp={start_sequence_timestamp}");
+        }
+
+        if (end_sequence_timestamp != null)
+        {
+            stringBuilder.Append($"&end_sequence_timestamp={end_sequence_timestamp}");
+        }
+
+        if (limit != null)
+        {
+            stringBuilder.Append($"&limit={limit}");
+        }
+
+        if (cursor != null)
+        {
+            stringBuilder.Append($"&cursor={cursor}");
+        }
+
+        var fullRequestPath = stringBuilder.ToString();
+        if (fullRequestPath.Contains('&') && !fullRequestPath.Contains('?'))
+        {
+            fullRequestPath = fullRequestPath.Remove(requestPath.Length, 1);
+            fullRequestPath = fullRequestPath.Insert(requestPath.Length, "?");
+        }
+
+        return await SendServiceCall<FillsResponse>(
+            HttpMethod.Get,
+            requestPath,
+            fullRequestPath,
+            string.Empty
+        );
+    }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public async Task<OrderResponse> GetOrderAsync(
+        string order_id,
+        string? client_order_id = null,
+        string? user_native_currency = null
+    )
+    {
+        var requestPath = $"/api/v3/brokerage/orders/historical/{order_id}";
+        var stringBuilder = new StringBuilder();
+        stringBuilder.Append(requestPath);
+        if (client_order_id != null)
+        {
+            stringBuilder.Append($"?client_order_id={client_order_id}");
+        }
+
+        if (user_native_currency != null)
+        {
+            stringBuilder.Append($"&user_native_currency={user_native_currency}");
+        }
+
+        var fullRequestPath = stringBuilder.ToString();
+        if (fullRequestPath.Contains('&') && !fullRequestPath.Contains('?'))
+        {
+            fullRequestPath = fullRequestPath.Remove(requestPath.Length, 1);
+            fullRequestPath = fullRequestPath.Insert(requestPath.Length, "?");
+        }
+
+        return await SendServiceCall<OrderResponse>(
             HttpMethod.Get,
             requestPath,
             fullRequestPath,
