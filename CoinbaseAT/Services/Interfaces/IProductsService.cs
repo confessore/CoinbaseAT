@@ -17,4 +17,6 @@ public interface IProductsService
         string[]? product_ids = null,
         string? contract_expiry_type = null
     );
+
+    Task<Product> GetProductAsync(string product_id);
 }

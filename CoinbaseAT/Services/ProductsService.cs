@@ -60,4 +60,12 @@ public class ProductsService : CoinbaseATService, IProductsService
             string.Empty
         );
     }
+
+    public async Task<Product> GetProductAsync(string product_id)
+    {
+        return await SendServiceCall<Product>(
+            HttpMethod.Get,
+            $"/api/v3/brokerage/products/{product_id}"
+        );
+    }
 }
