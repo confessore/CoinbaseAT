@@ -7,15 +7,10 @@ namespace CoinbaseAT.Models.Interfaces;
 /// <summary>
 ///
 /// </summary>
-public interface IProductList
+public interface IPricebooksResponse
 {
     /// <summary>
-    /// Array of objects, each representing one product.
+    ///
     /// </summary>
-    IEnumerable<Product>? Products { get; set; }
-
-    /// <summary>
-    /// Number of products that were returned.
-    /// </summary>
-    int? Num_Products { get; set; }
+    IEnumerable<Pricebook>? Pricebooks { get; set; }
 }

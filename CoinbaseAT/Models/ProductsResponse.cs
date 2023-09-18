@@ -6,22 +6,17 @@ using CoinbaseAT.Models.Interfaces;
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// <inheritdoc cref="ITradeList"/>
+/// <inheritdoc cref="IProductsResponse"/>
 /// </summary>
-public class TradeList : ITradeList
+public class ProductsResponse : IProductsResponse
 {
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public IEnumerable<Trade>? Trades { get; set; }
+    public IEnumerable<Product>? Products { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public string? Best_Bid { get; set; }
-
-    /// <summary>
-    /// <inheritdoc/>
-    /// </summary>
-    public string? Best_Ask { get; set; }
+    public int? Num_Products { get; set; }
 }

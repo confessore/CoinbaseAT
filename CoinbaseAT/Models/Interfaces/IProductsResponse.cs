@@ -7,15 +7,15 @@ namespace CoinbaseAT.Models.Interfaces;
 /// <summary>
 ///
 /// </summary>
-public interface IFillList
+public interface IProductsResponse
 {
     /// <summary>
-    /// All fills matching the filters.
+    /// Array of objects, each representing one product.
     /// </summary>
-    IEnumerable<Fill>? Fills { get; set; }
+    IEnumerable<Product>? Products { get; set; }
 
     /// <summary>
-    /// Cursor for paginating. Users can use this string to pass in the next call to this endpoint, and repeat this process to fetch all fills through pagination.
+    /// Number of products that were returned.
     /// </summary>
-    string? Cursor { get; set; }
+    int? Num_Products { get; set; }
 }

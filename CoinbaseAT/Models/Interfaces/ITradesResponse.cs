@@ -7,25 +7,20 @@ namespace CoinbaseAT.Models.Interfaces;
 /// <summary>
 ///
 /// </summary>
-public interface IAccountList
+public interface ITradesResponse
 {
     /// <summary>
     ///
     /// </summary>
-    IEnumerable<Account>? Accounts { get; set; }
+    IEnumerable<Trade>? Trades { get; set; }
 
     /// <summary>
-    ///
+    /// The best bid for the `product_id`, in quote currency.
     /// </summary>
-    bool? Has_Next { get; set; }
+    string? Best_Bid { get; set; }
 
     /// <summary>
-    ///
+    /// The best ask for the `product_id`, in quote currency.
     /// </summary>
-    string? Cursor { get; set; }
-
-    /// <summary>
-    ///
-    /// </summary>
-    int? Size { get; set; }
+    string? Best_Ask { get; set; }
 }

@@ -6,9 +6,9 @@ using CoinbaseAT.Models.Interfaces;
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// <inheritdoc cref="IFillList"/>
+/// <inheritdoc cref="IFillsResponse"/>
 /// </summary>
-public class FillList : IFillList
+public class FillsResponse : IFillsResponse
 {
     /// <summary>
     /// <inheritdoc/>

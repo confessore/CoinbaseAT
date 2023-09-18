@@ -7,10 +7,25 @@ namespace CoinbaseAT.Models.Interfaces;
 /// <summary>
 ///
 /// </summary>
-public interface IPricebookList
+public interface IAccountsResponse
 {
     /// <summary>
     ///
     /// </summary>
-    IEnumerable<Pricebook>? Pricebooks { get; set; }
+    IEnumerable<Account>? Accounts { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    bool? Has_Next { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    string? Cursor { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    int? Size { get; set; }
 }

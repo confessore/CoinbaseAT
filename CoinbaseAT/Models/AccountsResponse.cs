@@ -6,17 +6,27 @@ using CoinbaseAT.Models.Interfaces;
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// <inheritdoc cref="IProductList"/>
+/// <inheritdoc cref="IAccountsResponse"/>
 /// </summary>
-public class ProductList : IProductList
+public class AccountsResponse : IAccountsResponse
 {
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public IEnumerable<Product>? Products { get; set; }
+    public IEnumerable<Account>? Accounts { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public int? Num_Products { get; set; }
+    public bool? Has_Next { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string? Cursor { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public int? Size { get; set; }
 }

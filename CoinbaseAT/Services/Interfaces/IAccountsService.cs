@@ -16,7 +16,7 @@ public interface IAccountsService
     /// <param name="limit"></param>
     /// <param name="cursor"></param>
     /// <returns></returns>
-    Task<AccountList> ListAccountsAsync(int? limit = null, string? cursor = null);
+    Task<AccountsResponse> ListAccountsAsync(int limit = 49, string? cursor = null);
 
     /// <summary>
     ///

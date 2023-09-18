@@ -6,9 +6,9 @@ using CoinbaseAT.Models.Interfaces;
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// <inheritdoc cref="ICandleList"/>
+/// <inheritdoc cref="ICandlesResponse"/>
 /// </summary>
-public class CandleList : ICandleList
+public class CandlesResponse : ICandlesResponse
 {
     public IEnumerable<Candle>? Candles { get; set; }
 }

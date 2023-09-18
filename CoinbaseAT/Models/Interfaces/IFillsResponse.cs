@@ -7,22 +7,12 @@ namespace CoinbaseAT.Models.Interfaces;
 /// <summary>
 ///
 /// </summary>
-public interface IOrderList
+public interface IFillsResponse
 {
     /// <summary>
-    /// A list of orders matching the query.
+    /// All fills matching the filters.
     /// </summary>
-    IEnumerable<Order>? Orders { get; set; }
-
-    /// <summary>
-    /// The sequence of the db at which this state was read.
-    /// </summary>
-    long? Sequence { get; set; }
-
-    /// <summary>
-    /// Whether there are additional pages for this query.
-    /// </summary>
-    bool? Has_Next { get; set; }
+    IEnumerable<Fill>? Fills { get; set; }
 
     /// <summary>
     /// Cursor for paginating. Users can use this string to pass in the next call to this endpoint, and repeat this process to fetch all fills through pagination.

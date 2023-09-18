@@ -7,20 +7,10 @@ namespace CoinbaseAT.Models.Interfaces;
 /// <summary>
 ///
 /// </summary>
-public interface ITradeList
+public interface ICandlesResponse
 {
     /// <summary>
     ///
     /// </summary>
-    IEnumerable<Trade>? Trades { get; set; }
-
-    /// <summary>
-    /// The best bid for the `product_id`, in quote currency.
-    /// </summary>
-    string? Best_Bid { get; set; }
-
-    /// <summary>
-    /// The best ask for the `product_id`, in quote currency.
-    /// </summary>
-    string? Best_Ask { get; set; }
+    IEnumerable<Candle>? Candles { get; set; }
 }

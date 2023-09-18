@@ -6,14 +6,19 @@ using CoinbaseAT.Models.Interfaces;
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// <inheritdoc cref="IAccountList"/>
+/// <inheritdoc cref="IOrdersResponse"/>
 /// </summary>
-public class AccountList : IAccountList
+public class OrdersResponse : IOrdersResponse
 {
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public IEnumerable<Account>? Accounts { get; set; }
+    public IEnumerable<Order>? Orders { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public long? Sequence { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
@@ -24,9 +29,4 @@ public class AccountList : IAccountList
     /// <inheritdoc/>
     /// </summary>
     public string? Cursor { get; set; }
-
-    /// <summary>
-    /// <inheritdoc/>
-    /// </summary>
-    public int? Size { get; set; }
 }

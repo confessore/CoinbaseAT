@@ -17,13 +17,13 @@ public class ProductsService : CoinbaseATService, IProductsService
     public ProductsService(IHttpClientService httpClientService)
         : base(httpClientService) { }
 
-    public async Task<ProductList> ListProductsAsync()
+    public async Task<ProductsResponse> ListProductsAsync()
     {
         var requestPath = "/api/v3/brokerage/products";
         var stringBuilder = new StringBuilder();
         stringBuilder.Append(requestPath);
         var fullRequestPath = stringBuilder.ToString();
-        return await SendServiceCall<ProductList>(
+        return await SendServiceCall<ProductsResponse>(
             HttpMethod.Get,
             requestPath,
             fullRequestPath,

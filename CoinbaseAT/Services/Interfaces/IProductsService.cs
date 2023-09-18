@@ -10,5 +10,5 @@ namespace CoinbaseAT.Services.Interfaces;
 /// </summary>
 public interface IProductsService
 {
-    Task<ProductList> ListProductsAsync();
+    Task<ProductsResponse> ListProductsAsync();
 }

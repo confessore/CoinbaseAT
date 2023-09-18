@@ -17,29 +17,19 @@ public class AccountsService : CoinbaseATService, IAccountsService
     public AccountsService(IHttpClientService httpClientService)
         : base(httpClientService) { }
 
-    public async Task<AccountList> ListAccountsAsync(int? limit = null, string? cursor = null)
+    public async Task<AccountsResponse> ListAccountsAsync(int limit = 49, string? cursor = null)
     {
         var requestPath = "/api/v3/brokerage/accounts";
         var stringBuilder = new StringBuilder();
         stringBuilder.Append(requestPath);
-        if (limit != null || cursor != null)
+        stringBuilder.Append($"?limit={limit}");
+        if (cursor != null)
         {
-            if (limit != null && cursor != null)
-            {
-                stringBuilder.Append($"?limit={limit}&cursor={cursor}");
-            }
-            else if (limit != null)
-            {
-                stringBuilder.Append($"?limit={limit}");
-            }
-            else if (cursor != null)
-            {
-                stringBuilder.Append($"?cursor={cursor}");
-            }
+            stringBuilder.Append($"&cursor={cursor}");
         }
 
         var fullRequestPath = stringBuilder.ToString();
-        return await SendServiceCall<AccountList>(
+        return await SendServiceCall<AccountsResponse>(
             HttpMethod.Get,
             requestPath,
             fullRequestPath,
