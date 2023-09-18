@@ -23,5 +23,5 @@ public interface IAccountsService
     /// </summary>
     /// <param name="uuid"></param>
     /// <returns></returns>
-    Task<Account> GetAccountAsync(string uuid);
+    Task<AccountResponse> GetAccountAsync(string uuid);
 }

@@ -37,8 +37,11 @@ public class AccountsService : CoinbaseATService, IAccountsService
         );
     }
 
-    public async Task<Account> GetAccountAsync(string uuid)
+    public async Task<AccountResponse> GetAccountAsync(string uuid)
     {
-        return await SendServiceCall<Account>(HttpMethod.Get, $"/api/v3/brokerage/accounts/{uuid}");
+        return await SendServiceCall<AccountResponse>(
+            HttpMethod.Get,
+            $"/api/v3/brokerage/accounts/{uuid}"
+        );
     }
 }
