@@ -1,4 +1,5 @@
 # CoinbaseAT
+
 ## Coinbase Advanced Trade
 
 ### Pre-Release
@@ -12,11 +13,15 @@ Feel free to open a pull request.
 ### Currently
 
 Most models are created.
+
 Services are currently stubbed.
+
 v3 Signature Generator is functional and ready to sign headers.
 
 ### TODO
 
 FeesService
+
 OrdersService
+
 ProductsService
