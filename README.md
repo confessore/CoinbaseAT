@@ -14,7 +14,7 @@ Feel free to open a pull request.
 
 Most models are created.
 
-Services are currently stubbed.
+Services are stubbed.
 
 v3 Signature Generator is functional and ready to sign headers.
 
