@@ -49,6 +49,27 @@ public class ProductsService : CoinbaseATService, IProductsService
         );
     }
 
+    public async Task<PricebookResponse> GetProductBookAsync(string product_id, int limit = 0)
+    {
+        var requestPath = "/api/v3/brokerage/product_book";
+        var stringBuilder = new StringBuilder();
+        stringBuilder.Append(requestPath);
+        stringBuilder.Append($"?limit={limit}");
+
+        if (product_id != null)
+        {
+            stringBuilder.Append($"&product_id={product_id}");
+        }
+
+        var fullRequestPath = stringBuilder.ToString();
+        return await SendServiceCall<PricebookResponse>(
+            HttpMethod.Get,
+            requestPath,
+            fullRequestPath,
+            string.Empty
+        );
+    }
+
     public async Task<ProductsResponse> ListProductsAsync(
         int limit = 0,
         int? offset = null,

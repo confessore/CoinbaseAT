@@ -20,6 +20,14 @@ public interface IProductsService
     /// <summary>
     ///
     /// </summary>
+    /// <param name="product_ids"></param>
+    /// <param name="limit"></param>
+    /// <returns></returns>
+    Task<PricebookResponse> GetProductBookAsync(string product_id, int limit = 0);
+
+    /// <summary>
+    ///
+    /// </summary>
     /// <param name="limit"></param>
     /// <param name="offset"></param>
     /// <param name="product_type"></param>
