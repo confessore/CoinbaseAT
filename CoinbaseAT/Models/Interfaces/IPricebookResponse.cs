@@ -7,8 +7,15 @@ namespace CoinbaseAT.Models.Interface;
 /// </summary>
 public interface IPricebookResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     ///
     /// </summary>
     Pricebook? Pricebook { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    ///
+    /// </summary>
+    Pricebook Pricebook { get; set; }
+#endif
 }

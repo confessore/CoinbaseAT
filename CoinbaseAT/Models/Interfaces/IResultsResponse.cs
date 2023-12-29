@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models.Interfaces;
 /// </summary>
 public interface IResultsResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// The result of initiated cancel requests
     /// </summary>
@@ -28,4 +29,25 @@ public interface IResultsResponse
     /// The IDs of order cancel request was initiated for
     /// </summary>
     public string? Order_Id { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// The result of initiated cancel requests
+    /// </summary>
+    public IEnumerable<Result> Results { get; set; }
+
+    /// <summary>
+    /// Whether the cancel request was submitted successfully.
+    /// </summary>
+    public string Success { get; set; }
+
+    /// <summary>
+    /// Possible values: [UNKNOWN_CANCEL_FAILURE_REASON, INVALID_CANCEL_REQUEST, UNKNOWN_CANCEL_ORDER, COMMANDER_REJECTED_CANCEL_ORDER, DUPLICATE_CANCEL_REQUEST]
+    /// </summary>
+    public string Failure_Reason { get; set; }
+
+    /// <summary>
+    /// The IDs of order cancel request was initiated for
+    /// </summary>
+    public string Order_Id { get; set; }
+#endif
 }

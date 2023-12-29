@@ -7,6 +7,7 @@ namespace CoinbaseAT.Models.Interfaces;
 /// </summary>
 public interface ISuccessResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// The ID of the order created
     /// </summary>
@@ -26,4 +27,25 @@ public interface ISuccessResponse
     /// Client set unique uuid for this order
     /// </summary>
     string? Client_Order_Id { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// The ID of the order created
+    /// </summary>
+    string Order_Id { get; set; }
+
+    /// <summary>
+    /// The product this order was created for e.g. 'BTC-USD'
+    /// </summary>
+    string Product_Id { get; set; }
+
+    /// <summary>
+    /// Possible values: [UNKNOWN_ORDER_SIDE, BUY, SELL]
+    /// </summary>
+    string Side { get; set; }
+
+    /// <summary>
+    /// Client set unique uuid for this order
+    /// </summary>
+    string Client_Order_Id { get; set; }
+#endif
 }

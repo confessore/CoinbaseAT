@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFrameworks>net7.0;netstandard2.0</TargetFrameworks>
+    <LanguageVersion Condition=" '$(Framework)' == 'NETSTANDARD2_0' ">7.3</LanguageVersion>
+    <Nullable Condition=" '$(Framework)' == 'NET7_0' ">enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>CoinbaseAT</Title>
     <Authors>Steven Confessore, Balanced Solutions Software, CoinbaseAT Contributors</Authors>

@@ -7,8 +7,15 @@ namespace CoinbaseAT.Models.Interface;
 /// </summary>
 public interface ITradeResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     ///
     /// </summary>
     Trade? Trade { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    ///
+    /// </summary>
+    Trade Trade { get; set; }
+#endif
 }

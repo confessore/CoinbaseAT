@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models.Interfaces;
 /// </summary>
 public interface IProductsResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// Array of objects, each representing one product.
     /// </summary>
@@ -18,4 +19,15 @@ public interface IProductsResponse
     /// Number of products that were returned.
     /// </summary>
     int? Num_Products { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// Array of objects, each representing one product.
+    /// </summary>
+    IEnumerable<Product> Products { get; set; }
+
+    /// <summary>
+    /// Number of products that were returned.
+    /// </summary>
+    int Num_Products { get; set; }
+#endif
 }

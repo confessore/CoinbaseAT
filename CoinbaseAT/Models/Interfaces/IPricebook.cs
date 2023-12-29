@@ -10,6 +10,7 @@ namespace CoinbaseAT.Models.Interfaces;
 /// </summary>
 public interface IPricebook
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     ///
     /// </summary>
@@ -29,4 +30,25 @@ public interface IPricebook
     ///
     /// </summary>
     DateTime? Time { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    ///
+    /// </summary>
+    string Product_Id { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    IEnumerable<AskBid> Bids { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    IEnumerable<AskBid> Asks { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    DateTime Time { get; set; }
+#endif
 }

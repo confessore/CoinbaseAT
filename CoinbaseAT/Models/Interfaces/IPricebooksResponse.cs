@@ -9,8 +9,15 @@ namespace CoinbaseAT.Models.Interfaces;
 /// </summary>
 public interface IPricebooksResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     ///
     /// </summary>
     IEnumerable<Pricebook>? Pricebooks { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    ///
+    /// </summary>
+    IEnumerable<Pricebook> Pricebooks { get; set; }
+#endif
 }

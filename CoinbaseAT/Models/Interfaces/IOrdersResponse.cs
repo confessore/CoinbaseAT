@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models.Interfaces;
 /// </summary>
 public interface IOrdersResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// A list of orders matching the query.
     /// </summary>
@@ -28,4 +29,25 @@ public interface IOrdersResponse
     /// Cursor for paginating. Users can use this string to pass in the next call to this endpoint, and repeat this process to fetch all fills through pagination.
     /// </summary>
     string? Cursor { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// A list of orders matching the query.
+    /// </summary>
+    IEnumerable<Order> Orders { get; set; }
+
+    /// <summary>
+    /// The sequence of the db at which this state was read.
+    /// </summary>
+    long Sequence { get; set; }
+
+    /// <summary>
+    /// Whether there are additional pages for this query.
+    /// </summary>
+    bool Has_Next { get; set; }
+
+    /// <summary>
+    /// Cursor for paginating. Users can use this string to pass in the next call to this endpoint, and repeat this process to fetch all fills through pagination.
+    /// </summary>
+    string Cursor { get; set; }
+#endif
 }

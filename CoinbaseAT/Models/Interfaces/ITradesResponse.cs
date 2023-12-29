@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models.Interfaces;
 /// </summary>
 public interface ITradesResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     ///
     /// </summary>
@@ -23,4 +24,20 @@ public interface ITradesResponse
     /// The best ask for the `product_id`, in quote currency.
     /// </summary>
     string? Best_Ask { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    ///
+    /// </summary>
+    IEnumerable<Trade> Trades { get; set; }
+
+    /// <summary>
+    /// The best bid for the `product_id`, in quote currency.
+    /// </summary>
+    string Best_Bid { get; set; }
+
+    /// <summary>
+    /// The best ask for the `product_id`, in quote currency.
+    /// </summary>
+    string Best_Ask { get; set; }
+#endif
 }

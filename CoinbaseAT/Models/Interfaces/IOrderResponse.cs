@@ -7,8 +7,15 @@ namespace CoinbaseAT.Models.Interface;
 /// </summary>
 public interface IOrderResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     ///
     /// </summary>
     Order? Order { get; set; }
+#elif NETSTANDARD1_2_OR_GREATER
+    /// <summary>
+    ///
+    /// </summary>
+    Order Order { get; set; }
+#endif
 }

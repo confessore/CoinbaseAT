@@ -7,8 +7,15 @@ namespace CoinbaseAT.Models.Interface;
 /// </summary>
 public interface IProductResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     ///
     /// </summary>
     Product? Product { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    ///
+    /// </summary>
+    Product Product { get; set; }
+#endif
 }

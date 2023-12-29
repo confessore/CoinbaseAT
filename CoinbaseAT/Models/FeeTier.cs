@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class FeeTier : IFeeTier
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -33,4 +34,30 @@ public class FeeTier : IFeeTier
     /// <inheritdoc/>
     /// </summary>
     public string? Maker_Fee_Rate { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Pricing_Tier { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string USD_From { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string USD_To { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Taker_Fee_Rate { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Maker_Fee_Rate { get; set; }
+#endif
 }

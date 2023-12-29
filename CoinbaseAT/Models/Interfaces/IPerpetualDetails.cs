@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models.Interfaces;
 /// </summary>
 public interface IPerpetualDetails
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     ///
     /// </summary>
@@ -23,4 +24,20 @@ public interface IPerpetualDetails
     ///
     /// </summary>
     DateTime? Funding_Time { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    ///
+    /// </summary>
+    string Open_Interest { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    string Funding_Rate { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    DateTime Funding_Time { get; set; }
+#endif
 }
