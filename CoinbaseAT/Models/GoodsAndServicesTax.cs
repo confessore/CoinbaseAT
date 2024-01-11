@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class GoodsAndServicesTax : IGoodsAndServicesTax
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -18,4 +19,15 @@ public class GoodsAndServicesTax : IGoodsAndServicesTax
     /// <inheritdoc/>
     /// </summary>
     public string? Type { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Rate { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Type { get; set; }
+#endif
 }

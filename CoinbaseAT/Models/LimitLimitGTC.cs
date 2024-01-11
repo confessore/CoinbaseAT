@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class LimitLimitGTC : ILimitLimitGTC
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -23,4 +24,20 @@ public class LimitLimitGTC : ILimitLimitGTC
     /// <inheritdoc/>
     /// </summary>
     public bool? Post_Only { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Base_Size { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Limit_Price { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public bool Post_Only { get; set; }
+#endif
 }

@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class MarketMarketLoc : IMarketMarketLoc
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -18,4 +19,15 @@ public class MarketMarketLoc : IMarketMarketLoc
     /// <inheritdoc/>
     /// </summary>
     public string? Base_Size { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Quote_Size { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Base_Size { get; set; }
+#endif
 }
