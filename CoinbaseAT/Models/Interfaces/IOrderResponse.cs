@@ -12,7 +12,7 @@ public interface IOrderResponse
     ///
     /// </summary>
     Order? Order { get; set; }
-#elif NETSTANDARD1_2_OR_GREATER
+#elif NETSTANDARD2_0_OR_GREATER
     /// <summary>
     ///
     /// </summary>

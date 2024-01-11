@@ -10,6 +10,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class FillsResponse : IFillsResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -19,4 +20,15 @@ public class FillsResponse : IFillsResponse
     /// <inheritdoc/>
     /// </summary>
     public string? Cursor { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public IEnumerable<Fill> Fills { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Cursor { get; set; }
+#endif
 }

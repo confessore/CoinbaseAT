@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class ErrorResponse : IErrorResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -33,4 +34,30 @@ public class ErrorResponse : IErrorResponse
     /// <inheritdoc/>
     /// </summary>
     public string? New_Order_Failure_Reason { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Error { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Message { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Error_Details { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Preview_Failure_Reason { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string New_Order_Failure_Reason { get; set; }
+#endif
 }

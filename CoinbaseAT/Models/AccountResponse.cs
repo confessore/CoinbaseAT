@@ -9,8 +9,15 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class AccountResponse : IAccountResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
     public Account? Account { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public Account Account { get; set; }
+#endif
 }

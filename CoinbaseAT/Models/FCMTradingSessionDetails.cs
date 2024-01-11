@@ -10,6 +10,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class FCMTradingSessionDetails : IFCMTradingSessionDetails
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -24,4 +25,20 @@ public class FCMTradingSessionDetails : IFCMTradingSessionDetails
     /// <inheritdoc/>
     /// </summary>
     public DateTime? Close_Time { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public bool Is_Session_Open { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public DateTime Open_Time { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public DateTime Close_Time { get; set; }
+#endif
 }

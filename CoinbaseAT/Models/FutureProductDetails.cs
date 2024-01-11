@@ -10,6 +10,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class FutureProductDetails : IFutureProductDetails
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -64,4 +65,60 @@ public class FutureProductDetails : IFutureProductDetails
     /// <inheritdoc/>
     /// </summary>
     public PerpetualDetails? Perpetual_Details { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Venue { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Contract_Code { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public DateTime Contract_Expiry { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Contract_Size { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Contract_Root_Unit { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Group_Description { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Contract_Expiry_Timezone { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Group_Short_Description { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Risk_Managed_By { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Contract_Expiry_Type { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public PerpetualDetails Perpetual_Details { get; set; }
+#endif
 }

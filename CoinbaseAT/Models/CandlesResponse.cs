@@ -10,5 +10,15 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class CandlesResponse : ICandlesResponse
 {
+#if NET7_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public IEnumerable<Candle>? Candles { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public IEnumerable<Candle> Candles { get; set; }
+#endif
 }

@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class AccountBalance : IAccountBalance
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -18,4 +19,15 @@ public class AccountBalance : IAccountBalance
     /// <inheritdoc/>
     /// </summary>
     public string? Currency { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Value { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Currency { get; set; }
+#endif
 }

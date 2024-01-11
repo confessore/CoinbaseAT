@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class AskBid : IAskBid
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -18,4 +19,15 @@ public class AskBid : IAskBid
     /// <inheritdoc/>
     /// </summary>
     public string? Size { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Price { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Size { get; set; }
+#endif
 }
