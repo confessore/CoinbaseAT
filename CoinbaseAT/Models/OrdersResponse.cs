@@ -10,6 +10,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class OrdersResponse : IOrdersResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -29,4 +30,25 @@ public class OrdersResponse : IOrdersResponse
     /// <inheritdoc/>
     /// </summary>
     public string? Cursor { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public IEnumerable<Order> Orders { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public long Sequence { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public bool Has_Next { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Cursor { get; set; }
+#endif
 }

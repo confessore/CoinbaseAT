@@ -10,8 +10,15 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class PricebooksResponse : IPricebooksResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
     public IEnumerable<Pricebook>? Pricebooks { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public IEnumerable<Pricebook> Pricebooks { get; set; }
+#endif
 }

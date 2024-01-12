@@ -9,8 +9,15 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class OrderResponse : IOrderResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
     public Order? Order { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public Order Order { get; set; }
+#endif
 }

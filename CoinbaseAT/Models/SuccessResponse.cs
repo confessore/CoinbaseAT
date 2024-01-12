@@ -9,6 +9,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class SuccessResponse : ISuccessResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -28,4 +29,25 @@ public class SuccessResponse : ISuccessResponse
     /// <inheritdoc/>
     /// </summary>
     public string? Client_Order_Id { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Order_Id { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Product_Id { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Side { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Client_Order_Id { get; set; }
+#endif
 }

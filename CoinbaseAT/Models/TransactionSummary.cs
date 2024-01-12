@@ -54,7 +54,7 @@ public class TransactionSummary : ITransactionSummary
     /// <inheritdoc/>
     /// </summary>
     public double? Coinbase_Pro_Fees { get; set; }
-#elif NETSTANDARD1_2_OR_GREATER
+#elif NETSTANDARD2_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>

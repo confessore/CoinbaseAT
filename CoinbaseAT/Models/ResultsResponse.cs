@@ -10,6 +10,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class ResultsResponse : IResultsResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -29,4 +30,25 @@ public class ResultsResponse : IResultsResponse
     /// <inheritdoc/>
     /// </summary>
     public string? Order_Id { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public IEnumerable<Result> Results { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Success { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Failure_Reason { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Order_Id { get; set; }
+#endif
 }

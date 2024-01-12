@@ -10,6 +10,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class Trade : ITrade
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -49,4 +50,45 @@ public class Trade : ITrade
     /// <inheritdoc/>
     /// </summary>
     public string? Ask { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Trade_Id { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Product_Id { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Price { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Size { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public DateTime Time { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Side { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Bid { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Ask { get; set; }
+#endif
 }

@@ -10,6 +10,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class TradesResponse : ITradesResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -24,4 +25,20 @@ public class TradesResponse : ITradesResponse
     /// <inheritdoc/>
     /// </summary>
     public string? Best_Ask { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public IEnumerable<Trade> Trades { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Best_Bid { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Best_Ask { get; set; }
+#endif
 }

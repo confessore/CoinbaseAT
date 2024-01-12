@@ -9,8 +9,15 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class ProductResponse : IProductResponse
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
     public Product? Product { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public Product Product { get; set; }
+#endif
 }

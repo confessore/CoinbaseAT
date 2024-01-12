@@ -11,6 +11,7 @@ namespace CoinbaseAT.Models;
 /// </summary>
 public class Pricebook : IPricebook
 {
+#if NET7_0_OR_GREATER
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
@@ -30,4 +31,25 @@ public class Pricebook : IPricebook
     /// <inheritdoc/>
     /// </summary>
     public DateTime? Time { get; set; }
+#elif NETSTANDARD2_0_OR_GREATER
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Product_Id { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public IEnumerable<AskBid> Bids { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public IEnumerable<AskBid> Asks { get; set; }
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public DateTime Time { get; set; }
+#endif
 }
