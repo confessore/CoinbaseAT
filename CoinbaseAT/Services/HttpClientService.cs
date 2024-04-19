@@ -1,8 +1,11 @@
 ﻿// Copyright (c) Steven Confessore - Balanced Solutions Software - CoinbaseAT Contributors.  All Rights Reserved.  Licensed under the MIT license.  See LICENSE in the project root for license information.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using CoinbaseAT.Extensions;
 using CoinbaseAT.Interfaces;
@@ -50,11 +53,12 @@ public class HttpClientService : IHttpClientService
             requestPath,
             contentBody
         );
-        requestMessage.Headers.Add(
-            "CB-ACCESS-TIMESTAMP",
-            timestamp.ToString("F0", CultureInfo.InvariantCulture)
-        );
-        requestMessage.Headers.Add("CB-ACCESS-SIGN", signature);
+        //requestMessage.Headers.Add(
+            //"CB-ACCESS-TIMESTAMP",
+            //timestamp.ToString("F0", CultureInfo.InvariantCulture)
+        //);
+        //requestMessage.Headers.Add("CB-ACCESS-SIGN", signature);
+        requestMessage.Headers.Add("Authorization", $"Bearer {_coinbaseATConfiguration.BuildJWT(httpMethod.Method, requestPath)}");
         return requestMessage;
     }
 
@@ -79,14 +83,19 @@ public class HttpClientService : IHttpClientService
             requestPath,
             contentBody
         );
-        requestMessage.Headers.Add(
-            "CB-ACCESS-TIMESTAMP",
-            timestamp.ToString("F0", CultureInfo.InvariantCulture)
-        );
-        requestMessage.Headers.Add("CB-ACCESS-SIGN", signature);
+        //requestMessage.Headers.Add(
+        //"CB-ACCESS-TIMESTAMP",
+        //timestamp.ToString("F0", CultureInfo.InvariantCulture)
+        //);
+        //requestMessage.Headers.Add("CB-ACCESS-SIGN", signature);
+        var jwt = _coinbaseATConfiguration.BuildJWT(httpMethod.Method, requestPath);
+        requestMessage.Headers.Add("Authorization", $"Bearer {jwt}");
         return requestMessage;
     }
 
+
+
     private HttpClient CreateHttpClient() =>
         _httpClientFactory.CreateClient(nameof(IHttpClientService));
+
 }
