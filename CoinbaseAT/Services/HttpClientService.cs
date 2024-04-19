@@ -84,8 +84,8 @@ public class HttpClientService : IHttpClientService
             contentBody
         );
         //requestMessage.Headers.Add(
-            //"CB-ACCESS-TIMESTAMP",
-            //timestamp.ToString("F0", CultureInfo.InvariantCulture)
+        //"CB-ACCESS-TIMESTAMP",
+        //timestamp.ToString("F0", CultureInfo.InvariantCulture)
         //);
         //requestMessage.Headers.Add("CB-ACCESS-SIGN", signature);
         var jwt = _coinbaseATConfiguration.BuildJWT(httpMethod.Method, requestPath);
