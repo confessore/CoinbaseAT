@@ -85,7 +85,7 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
     {
         try
         {
-            /*ECDsa privateKey = null;
+            ECDsa privateKey = null;
             var modifiedSecret = APISecret.Replace("\\n", "\n");
 
             using (var reader = new StringReader(modifiedSecret))
@@ -114,10 +114,10 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
                     D = d,                                // Set the private key component
                     Q = new ECPoint { X = x, Y = y }      // Set the public key components
                 });
-            }*/
+            }
 
-            var privateKey = ECDsa.Create();
-            privateKey.ImportFromPem(APISecret);
+            //var privateKey = ECDsa.Create();
+            //privateKey = ImportFromPem(privateKey, APISecret);
 
 
             var request_host = "api.coinbase.com";
@@ -155,6 +155,17 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
         }
     }
 
+    private static ECDsa ImportFromPem(ECDsa ecDsa, string pemString)
+    {
+        var privateKeyBytes = Convert.FromBase64String(
+            pemString.Replace("-----BEGIN EC PRIVATE KEY-----", "")
+                     .Replace("-----END EC PRIVATE KEY-----", "")
+                     .Replace("\n", "")
+        );
+        ecDsa.ImportECPrivateKey(privateKeyBytes, out _);
+        return ecDsa;
+    }
+
     /// <summary>
     /// Generates a unique nonce value.
     /// This method generates a 32-byte random value which is sufficiently large to ensure uniqueness and security.
@@ -171,17 +182,4 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
         return BitConverter.ToString(randomBytes).Replace("-", "").ToLower();
     }
 #pragma warning restore SYSLIB0023 // Restore the warning
-}
-
-public static class ECDsaExtensions
-{
-    public static void ImportFromPem(this ECDsa ecDsa, string pemString)
-    {
-        var privateKeyBytes = Convert.FromBase64String(
-            pemString.Replace("-----BEGIN EC PRIVATE KEY-----", "")
-                     .Replace("-----END EC PRIVATE KEY-----", "")
-                     .Replace("\n", "")
-        );
-        ecDsa.ImportECPrivateKey(privateKeyBytes, out _);
-    }
 }

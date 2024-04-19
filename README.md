@@ -13,7 +13,7 @@
 
 CoinbaseAT is now initially released!
 
-You can find the package on nuget at [https://www.nuget.org/packages/CoinbaseAT/1.0.0](https://www.nuget.org/packages/CoinbaseAT/)
+You can find the package on nuget at [https://www.nuget.org/packages/CoinbaseAT/](https://www.nuget.org/packages/CoinbaseAT/)
 
 Feel free to open pull requests or issues
 
