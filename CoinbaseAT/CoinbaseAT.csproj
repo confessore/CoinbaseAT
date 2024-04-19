@@ -1,15 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <VersionPrefix>1.3</VersionPrefix>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>CoinbaseAT</Title>
     <Authors>Steven Confessore, Balanced Solutions Software, CoinbaseAT Contributors</Authors>
     <Description>The unofficial .NET/C# client library for the Coinbase Advanced Trade API</Description>
-    <Copyright>2023</Copyright>
+    <Copyright>2024</Copyright>
     <PackageProjectUrl>https://github.com/confessore/CoinbaseAT</PackageProjectUrl>
-    <PackageIcon>866448CD-6064-4895-8278-6E1953F8B397.PNG</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/confessore/CoinbaseAT</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\Downloads\866448CD-6064-4895-8278-6E1953F8B397.PNG">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -39,8 +35,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+    <PackageReference Include="jose-jwt" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
   </ItemGroup>
 
 </Project>
