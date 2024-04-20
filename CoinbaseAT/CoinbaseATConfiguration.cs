@@ -85,7 +85,7 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
     {
         try
         {
-            ECDsa privateKey = null;
+            /*ECDsa privateKey = null;
             var modifiedSecret = APISecret.Replace("\\n", "\n");
 
             using (var reader = new StringReader(modifiedSecret))
@@ -114,10 +114,10 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
                     D = d,                                // Set the private key component
                     Q = new ECPoint { X = x, Y = y }      // Set the public key components
                 });
-            }
+            }*/
 
-            //var privateKey = ECDsa.Create();
-            //privateKey = ImportFromPem(privateKey, APISecret);
+            var privateKey = ECDsa.Create();
+            privateKey = ImportFromPem(privateKey, APISecret);
 
 
             var request_host = "api.coinbase.com";
