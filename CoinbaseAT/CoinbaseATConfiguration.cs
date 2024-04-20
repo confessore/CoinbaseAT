@@ -81,11 +81,11 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
     /// <param name="path">Optional. The path of the API endpoint being accessed. Not required for WebSocket authentication.</param>
     /// <returns>A signed JWT in string format for use in the Authorization header.</returns>
     /// <exception cref="Exception">Throws an exception if there is an issue in generating the JWT.</exception>
-    public string BuildJWT(string method = null, string path = null)
+    public string BuildJWT(string method, string path)
     {
         try
         {
-            /*ECDsa privateKey = null;
+            ECDsa? privateKey;
             var modifiedSecret = APISecret.Replace("\\n", "\n");
 
             using (var reader = new StringReader(modifiedSecret))
@@ -114,10 +114,10 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
                     D = d,                                // Set the private key component
                     Q = new ECPoint { X = x, Y = y }      // Set the public key components
                 });
-            }*/
+            }
 
-            var privateKey = ECDsa.Create();
-            privateKey = ImportFromPem(privateKey, APISecret);
+            //var privateKey = ECDsa.Create();
+            //privateKey = ImportFromPem(privateKey, APISecret);
 
 
             var request_host = "api.coinbase.com";
