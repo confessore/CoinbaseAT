@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
@@ -149,8 +150,10 @@ public class CoinbaseATConfiguration : ICoinbaseATConfiguration
 
             return token;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            Debug.WriteLine(ex.Message);
+            Debug.WriteLine(ex.InnerException.Message);
             throw;
         }
     }
