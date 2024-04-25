@@ -34,5 +34,5 @@ public interface ICoinbaseATConfiguration
         string contentBody = ""
     );
 
-    string BuildJWT(string method = null, string path = null);
+    string BuildJWT(string method, string path);
 }
