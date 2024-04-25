@@ -58,7 +58,8 @@ public class HttpClientService : IHttpClientService
             //timestamp.ToString("F0", CultureInfo.InvariantCulture)
         //);
         //requestMessage.Headers.Add("CB-ACCESS-SIGN", signature);
-        requestMessage.Headers.Add("Authorization", $"Bearer {_coinbaseATConfiguration.BuildJWT(httpMethod.Method, requestPath)}");
+        var jwt = _coinbaseATConfiguration.BuildJWT(httpMethod.Method, requestPath);
+        requestMessage.Headers.Add("Authorization", $"Bearer {jwt}");
         return requestMessage;
     }
 
