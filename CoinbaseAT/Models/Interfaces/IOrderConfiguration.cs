@@ -10,7 +10,7 @@ public interface IOrderConfiguration
     /// <summary>
     ///
     /// </summary>
-    MarketMarketLoc? Market_Market_Loc { get; set; }
+    MarketMarketIoc? Market_Market_Ioc { get; set; }
 
     /// <summary>
     ///
@@ -20,7 +20,7 @@ public interface IOrderConfiguration
     /// <summary>
     ///
     /// </summary>
-    LimitLimitGTD? LimitLimitGTD { get; set; }
+    LimitLimitGTD? Limit_Limit_GTD { get; set; }
 
     /// <summary>
     ///

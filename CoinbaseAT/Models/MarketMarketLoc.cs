@@ -5,9 +5,9 @@ using CoinbaseAT.Models.Interfaces;
 namespace CoinbaseAT.Models;
 
 /// <summary>
-/// <inheritdoc cref="IMarketMarketLoc"/>
+/// <inheritdoc cref="IMarketMarketIoc"/>
 /// </summary>
-public class MarketMarketLoc : IMarketMarketLoc
+public class MarketMarketIoc : IMarketMarketIoc
 {
     /// <summary>
     /// <inheritdoc/>

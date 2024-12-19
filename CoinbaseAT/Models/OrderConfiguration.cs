@@ -12,7 +12,7 @@ public class OrderConfiguration : IOrderConfiguration
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public MarketMarketLoc? Market_Market_Loc { get; set; }
+    public MarketMarketIoc? Market_Market_Ioc { get; set; }
 
     /// <summary>
     /// <inheritdoc/>
@@ -22,7 +22,7 @@ public class OrderConfiguration : IOrderConfiguration
     /// <summary>
     /// <inheritdoc/>
     /// </summary>
-    public LimitLimitGTD? LimitLimitGTD { get; set; }
+    public LimitLimitGTD? Limit_Limit_GTD { get; set; }
 
     /// <summary>
     /// <inheritdoc/>

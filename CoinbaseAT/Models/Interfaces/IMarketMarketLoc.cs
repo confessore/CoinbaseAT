@@ -5,7 +5,7 @@ namespace CoinbaseAT.Models.Interfaces;
 /// <summary>
 ///
 /// </summary>
-public interface IMarketMarketLoc
+public interface IMarketMarketIoc
 {
     /// <summary>
     /// Amount of quote currency to spend on order. Required for BUY orders.
